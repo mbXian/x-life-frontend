@@ -94,6 +94,7 @@ export default {
   },
   methods: {
     handleClick() {
+      console.log('点击事件！');
       this.$message('这是一条消息提示');
     }
   }
