@@ -85,6 +85,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'HelloWorld',
   data () {
@@ -95,7 +97,11 @@ export default {
   methods: {
     handleClick() {
       console.log('点击事件！');
-      this.$message('这是一条消息提示');
+      axios.get('api/meal/recommend').then(response => {
+          this.$message('请求成功');
+      }, response => {
+          this.$message('请求失败');
+      });
     }
   }
 }
