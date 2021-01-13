@@ -80,7 +80,7 @@
         </a>
       </li>
     </ul>
-    <el-button icon="el-icon-search" circle></el-button>
+    <el-button icon="el-icon-search" circle @click="handleClick"></el-button>
   </div>
 </template>
 
@@ -90,6 +90,11 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    handleClick() {
+      this.$message('这是一条消息提示');
     }
   }
 }
