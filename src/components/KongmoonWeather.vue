@@ -17,11 +17,7 @@
         </el-option>
       </el-select>
       <!-- 刷新按钮 -->
-      <el-button
-        icon="el-icon-refresh"
-        circle
-        @click="requestWeatherData"
-      ></el-button>
+      <el-button type="primary" @click="requestWeatherData">刷新</el-button>
     </div>
 
     <!-- 线 -->
@@ -408,7 +404,7 @@ export default {
   methods: {
     // 是否显示loading
     isLoading() {
-      return  this.dataCount < this.dataCountTotal;
+      return this.dataCount < this.dataCountTotal;
     },
 
     // 获取今日天气预报图标
@@ -518,11 +514,11 @@ export default {
       axios.post("api/weather/getRealTimeData").then(
         (response) => {
           this.realTimeDataVO = response.data.data;
-          this.dataCount = (this.dataCount + 1);
+          this.dataCount = this.dataCount + 1;
         },
         (response) => {
           this.$message.error("实时天气数据请求失败！");
-          this.dataCount = (this.dataCount + 1);
+          this.dataCount = this.dataCount + 1;
         }
       );
 
@@ -530,11 +526,11 @@ export default {
       axios.post("api/weather/getDayForecast").then(
         (response) => {
           this.dayForecastVO = response.data.data;
-          this.dataCount = (this.dataCount + 1);
+          this.dataCount = this.dataCount + 1;
         },
         (response) => {
           this.$message.error("今天天气预报请求失败！");
-          this.dataCount = (this.dataCount + 1);
+          this.dataCount = this.dataCount + 1;
         }
       );
 
@@ -542,11 +538,11 @@ export default {
       axios.post("api/weather/getWeekForecast").then(
         (response) => {
           this.weekForecastVO = response.data.data;
-          this.dataCount = (this.dataCount + 1);
+          this.dataCount = this.dataCount + 1;
         },
         (response) => {
           this.$message.error("一周天气预报请求失败！");
-          this.dataCount = (this.dataCount + 1);
+          this.dataCount = this.dataCount + 1;
         }
       );
     },
