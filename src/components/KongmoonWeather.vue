@@ -92,15 +92,68 @@
       </el-row>
       <el-row>
         <el-col :span="12">
-          <span>预报人员：{{ getDayForecastInfoVO("forecaster") }}</span>
+          <span
+            >紫外线：{{ getDayForecastIndexVOValue("ultraviolet") }}</span
+          >
         </el-col>
         <el-col :span="12">
-          <span>检测时间：{{ getDayForecastInfoVO("time") }}</span>
+          <span>舒适度：{{ getDayForecastIndexVOValue("comfortLevel") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row>
+        <el-col :span="12">
+          <span
+            >城市火警：{{ getDayForecastIndexVOValue("cityFire") }}</span
+          >
+        </el-col>
+        <el-col :span="12">
+          <span>晾晒指数：{{ getDayForecastIndexVOValue("sunCure") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row>
+        <el-col :span="12">
+          <span>霉变指数：{{ getDayForecastIndexVOValue("mildew") }}</span>
+        </el-col>
+        <el-col :span="12">
+          <span
+            >晨运指数：{{ getDayForecastIndexVOValue("morningExercise") }}</span
+          >
+        </el-col>
+      </el-row>
+
+      <el-row>
+        <el-col :span="12">
+          <span
+            >森林火警：{{ getDayForecastIndexVOValue("forestFire") }}</span
+          >
+        </el-col>
+        <el-col :span="12">
+          <span>穿衣指数：{{ getDayForecastIndexVOValue("dress") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row>
+        <el-col :span="12">
+          <span>空气指数：{{ getDayForecastIndexVOValue("air") }}</span>
+        </el-col>
+        <el-col :span="12">
+          <span>暑热指数：{{ getDayForecastIndexVOValue("heat") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row>
+        <el-col :span="12">
+          <span>预报人员：{{ getDayForecastInfoVOValue("forecaster") }}</span>
+        </el-col>
+        <el-col :span="12">
+          <span>检测时间：{{ getDayForecastInfoVOValue("time") }}</span>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="24">
-          <span>描述：{{ getDayForecastInfoVO("weatherDesc") }}</span>
+          <span>描述：{{ getDayForecastInfoVOValue("weatherDesc") }}</span>
         </el-col>
       </el-row>
     </div>
@@ -112,7 +165,7 @@
         <el-table-column prop="time" label="日期"> </el-table-column>
         <el-table-column prop="week" label="星期"> </el-table-column>
         <el-table-column prop="situation" label="天气"> </el-table-column>
-        <el-table-column prop="temperature" label="天气"> </el-table-column>
+        <el-table-column prop="temperature" label="温度"> </el-table-column>
         <el-table-column prop="windDirection" label="风向"> </el-table-column>
         <el-table-column prop="windSpeed" label="风速"> </el-table-column>
         <el-table-column prop="humidity" label="相对湿度"> </el-table-column>
@@ -268,12 +321,21 @@ export default {
     },
 
     // 获取天气预报的描述
-    getDayForecastInfoVO(key) {
+    getDayForecastInfoVOValue(key) {
       if (this.dayForecastVO.dayForecastInfoVO) {
         return this.dayForecastVO.dayForecastInfoVO[key];
       }
       return "";
     },
+
+    //获取今天预报指数值
+    getDayForecastIndexVOValue(key) {
+      if (this.dayForecastVO.dayForecastIndexVO) {
+        return this.dayForecastVO.dayForecastIndexVO[key];
+      }
+      return "";
+    },
+
     //拉取所有的天气数据
     requestWeatherData() {
       //实时天气数据
