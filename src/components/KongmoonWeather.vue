@@ -50,16 +50,16 @@
         <el-col :span="12">
           <span>【风向】{{ getRealTimeWindDirection() }}</span>
         </el-col>
-        <el-col :span="12"> </el-col>
+        <el-col :span="12">
+          <span>【日降雨量】{{ realTimeDataVO.dailyRainfall }}毫米</span>
+        </el-col>
       </el-row>
 
       <el-row class="rowStype">
         <el-col :span="12">
-          <span>【日降雨量】{{ realTimeDataVO.dailyRainfall }}毫米</span>
-        </el-col>
-        <el-col :span="12">
           <span>【相对湿度】{{ realTimeDataVO.relativeHumidity }}%</span>
         </el-col>
+        <el-col :span="12"> </el-col>
       </el-row>
 
       <el-row class="rowStype remarkStype">
@@ -283,7 +283,7 @@
           <div>
             <el-image
               class="valueIconStype"
-              src="air.png"
+              src="https://gitee.com/pic-project/pic-it-work-001/raw/master/x-frontend/air.png"
               fit="fill"
             ></el-image>
           </div>
@@ -298,7 +298,7 @@
           <div>
             <el-image
               class="valueIconStype"
-              src="../../assets/sun.png"
+              src="https://gitee.com/pic-project/pic-it-work-001/raw/master/x-frontend/sun.png"
               fit="fill"
             ></el-image>
           </div>
@@ -309,13 +309,11 @@
       </el-row>
     </div>
 
-    <el-row class="rowStype remarkStype">
-      <el-col :span="24">
-        <span>{{ getWeekForecastInfoValue("forecaster7Day") }} 预报</span>
-      </el-col>
-    </el-row>
+    <div class="rowStype remarkStype">
+      {{ getWeekForecastInfoValue("forecaster7Day") }} 预报
+    </div>
 
-    <div class="rowStype">技术支持：@兵</div>
+    <div style="text-align: center">技术支持：@兵</div>
   </div>
 </template>
 
@@ -552,6 +550,7 @@ export default {
 .remarkStype {
   font-size: 13px;
   color: darkgray;
+  text-align: right;
 }
 .valueIconStype {
   width: 30px;
