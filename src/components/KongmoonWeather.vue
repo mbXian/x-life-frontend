@@ -27,9 +27,11 @@
     <div v-loading="isLoading()">
       <div class="titleStype">实时数据</div>
 
-      <div class="temperatureStype">
+      <div>
         <!-- 实时温度 -->
-        <div>{{ realTimeDataVO.temperature }}°</div>
+        <div class="temperatureStype" :style="temperatureColorStype">
+          {{ realTimeDataVO.temperature }}°
+        </div>
         <!-- 温度范围 -->
         <div class="temperatureRangeStype">
           {{ getDayForecastCityValue("tmin") }}°~{{
@@ -394,6 +396,10 @@ export default {
       dataCount: 0,
       // 总共需要完成接口数
       dataCountTotal: 3,
+      //温度颜色
+      temperatureColorStype: {
+        color: "#000",
+      },
     };
   },
 
@@ -406,7 +412,39 @@ export default {
     isLoading() {
       return this.dataCount < this.dataCountTotal;
     },
-
+    // 更新温度颜色
+    updateTemperatureColor() {
+      let temperature = this.realTimeDataVO.temperature;
+      var b = 0;
+      var g = 0;
+      var r = 0;
+      if (temperature === 20) {
+        b = 0;
+        g = 256;
+        r = 0;
+      } else if (temperature < 20) {
+        b = 256 - ((256/20) * (temperature - 0));
+        g = 256 - ((256/20) * (20 - temperature));
+        r = 0;
+      } else if (temperature > 20) {
+        b = 0;
+        g = 256 - ((256/20) * (temperature - 20));
+        r = 256 - ((256/20) * (40 - temperature));
+      }
+      this.temperatureColorStype.color = this.convertRgbToHex(r, g, b);
+    },
+    // rgb转hex
+    convertRgbToHex(r, g, b) {
+      r = Math.max(Math.min(Number(r), 100), 0) * 2.55;
+      g = Math.max(Math.min(Number(g), 100), 0) * 2.55;
+      b = Math.max(Math.min(Number(b), 100), 0) * 2.55;
+      r = ("0" + (Math.round(r) || 0).toString(16)).slice(-2);
+      g = ("0" + (Math.round(g) || 0).toString(16)).slice(-2);
+      b = ("0" + (Math.round(b) || 0).toString(16)).slice(-2);
+      let hex = "#" + r + g + b;
+      console.log('hex = ' + hex);
+      return hex;
+    },
     // 获取今日天气预报图标
     getDayForecastCityIcon() {
       const iconUrl =
@@ -515,6 +553,8 @@ export default {
         (response) => {
           this.realTimeDataVO = response.data.data;
           this.dataCount = this.dataCount + 1;
+          // 更新温度颜色
+          this.updateTemperatureColor();
         },
         (response) => {
           this.$message.error("实时天气数据请求失败！");
@@ -580,7 +620,7 @@ export default {
   text-align: center;
   font-weight: bold;
   font-size: 60px;
-  color: blueviolet;
+  color: rgb(0, 0, 0);
 }
 .temperatureRangeStype {
   text-align: center;
