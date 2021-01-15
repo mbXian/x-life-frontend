@@ -313,7 +313,17 @@
       {{ getWeekForecastInfoValue("forecaster7Day") }} 预报
     </div>
 
-    <div style="text-align: center">技术支持：@兵</div>
+    <div style="text-align: center">
+      <span>
+        <span style="border-radius:50%; color: darkturquoise">技术支持：@兵</span>
+        <el-image
+              class="valueIconStype"
+              style="border-radius:50%;"
+              src="https://gitee.com/pic-project/pic-it-work-001/raw/master/photoshop/portrait.png"
+              fit="fill"
+            ></el-image>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -353,6 +363,10 @@ export default {
         {
           value: "恩平",
           label: "恩平",
+        },
+        {
+          value: "川岛",
+          label: "川岛",
         },
       ],
       //所选地区
@@ -534,12 +548,12 @@ export default {
 .temperatureStype {
   text-align: center;
   font-weight: bold;
-  font-size: 45px;
+  font-size: 50px;
   color: blueviolet;
 }
 .temperatureRangeStype {
   font-size: 20px;
-  color: blueviolet;
+  color:darkturquoise;
 }
 .rowStype {
   margin-top: 5px;
