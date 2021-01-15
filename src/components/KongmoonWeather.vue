@@ -23,108 +23,115 @@
         @click="requestWeatherData"
       ></el-button>
     </div>
+
     <!-- 线 -->
     <div class="dashedStype"></div>
 
-    <div class="titleStype">实时数据</div>
+    <!-- 实时数据模块 -->
+    <div v-loading="isLoading()">
+      <div class="titleStype">实时数据</div>
 
-    <div class="temperatureStype">
-      <!-- 实时温度 -->
-      <div>{{ realTimeDataVO.temperature }}°</div>
-      <!-- 温度范围 -->
-      <div class="temperatureRangeStype">
-        {{ getDayForecastCityValue("tmin") }}°~{{
-          getDayForecastCityValue("tmax")
-        }}°
+      <div class="temperatureStype">
+        <!-- 实时温度 -->
+        <div>{{ realTimeDataVO.temperature }}°</div>
+        <!-- 温度范围 -->
+        <div class="temperatureRangeStype">
+          {{ getDayForecastCityValue("tmin") }}°~{{
+            getDayForecastCityValue("tmax")
+          }}°
+        </div>
+      </div>
+      <div>
+        <el-row class="rowStype">
+          <el-col :span="12">
+            <span>【风向】{{ getRealTimeWindDirection() }}</span>
+          </el-col>
+          <el-col :span="12">
+            <span>【日降雨量】{{ realTimeDataVO.dailyRainfall }}毫米</span>
+          </el-col>
+        </el-row>
+
+        <el-row class="rowStype">
+          <el-col :span="12">
+            <span>【风力】{{ realTimeDataVO.windPower }}</span>
+          </el-col>
+          <el-col :span="12">
+            <span>【相对湿度】{{ realTimeDataVO.relativeHumidity }}%</span>
+          </el-col>
+        </el-row>
+
+        <el-row class="rowStype">
+          <el-col :span="12">
+            <span>【风速】{{ realTimeDataVO.windSpeed }}m/s</span>
+          </el-col>
+          <el-col :span="12"> </el-col>
+        </el-row>
+
+        <el-row class="rowStype remarkStype">
+          <el-col :span="24">
+            <span>{{ realTimeDataVO.detectionDateTimeString }} 检测</span>
+          </el-col>
+        </el-row>
       </div>
     </div>
-    <div>
-      <el-row class="rowStype">
-        <el-col :span="12">
-          <span>【风向】{{ getRealTimeWindDirection() }}</span>
-        </el-col>
-        <el-col :span="12">
-          <span>【日降雨量】{{ realTimeDataVO.dailyRainfall }}毫米</span>
-        </el-col>
-      </el-row>
-
-      <el-row class="rowStype">
-        <el-col :span="12">
-          <span>【风力】{{ realTimeDataVO.windPower }}</span>
-        </el-col>
-        <el-col :span="12">
-          <span>【相对湿度】{{ realTimeDataVO.relativeHumidity }}%</span>
-        </el-col>
-      </el-row>
-
-      <el-row class="rowStype">
-        <el-col :span="12">
-          <span>【风速】{{ realTimeDataVO.windSpeed }}m/s</span>
-        </el-col>
-        <el-col :span="12"> </el-col>
-      </el-row>
-
-      <el-row class="rowStype remarkStype">
-        <el-col :span="24">
-          <span>{{ realTimeDataVO.detectionDateTimeString }} 检测</span>
-        </el-col>
-      </el-row>
-    </div>
 
     <!-- 线 -->
     <div class="dashedStype"></div>
 
-    <div class="titleStype" style="width: 130px">未来24小时预报</div>
+    <!-- 未来24小时预报模块 -->
+    <div v-loading="isLoading()">
+      <div class="titleStype" style="width: 130px">未来24小时预报</div>
 
-    <div style="text-align: center">
-      <!-- 预报图标 -->
-      <el-image
-        style="width: 50px; height: 50px"
-        :src="getDayForecastCityIcon()"
-        fit="fill"
-      ></el-image>
-    </div>
+      <div style="text-align: center">
+        <!-- 预报图标 -->
+        <el-image
+          style="width: 50px; height: 50px"
+          :src="getDayForecastCityIcon()"
+          fit="fill"
+        ></el-image>
+      </div>
 
-    <div>
-      <el-row class="rowStype">
-        <el-col :span="12">
-          <span>【风向】{{ getDayForecastCityValue("windDirection") }}</span>
-        </el-col>
-        <el-col :span="12">
-          <span>【天气】{{ getDayForecastCityValue("weatherShape") }}</span>
-        </el-col>
-      </el-row>
+      <div>
+        <el-row class="rowStype">
+          <el-col :span="12">
+            <span>【风向】{{ getDayForecastCityValue("windDirection") }}</span>
+          </el-col>
+          <el-col :span="12">
+            <span>【天气】{{ getDayForecastCityValue("weatherShape") }}</span>
+          </el-col>
+        </el-row>
 
-      <el-row class="rowStype">
-        <el-col :span="12">
-          <span>【风速】{{ getDayForecastCityValue("windSpeed") }}</span>
-        </el-col>
-        <el-col :span="12">
-          <span>【空气】{{ getDayForecastCityValue("air") }}</span>
-        </el-col>
-      </el-row>
+        <el-row class="rowStype">
+          <el-col :span="12">
+            <span>【风速】{{ getDayForecastCityValue("windSpeed") }}</span>
+          </el-col>
+          <el-col :span="12">
+            <span>【空气】{{ getDayForecastCityValue("air") }}</span>
+          </el-col>
+        </el-row>
 
-      <el-row class="rowStype">
-        <el-col :span="24">
-          <span>【预告】{{ getDayForecastInfoVOValue("weatherDesc") }}</span>
-        </el-col>
-      </el-row>
+        <el-row class="rowStype">
+          <el-col :span="24">
+            <span>【预告】{{ getDayForecastInfoVOValue("weatherDesc") }}</span>
+          </el-col>
+        </el-row>
 
-      <el-row class="rowStype remarkStype">
-        <el-col :span="24">
-          <span
-            >{{ getDayForecastInfoVOValue("forecaster") }} 于
-            {{ getDayForecastInfoVOValue("time") }} 预报</span
-          >
-        </el-col>
-      </el-row>
+        <el-row class="rowStype remarkStype">
+          <el-col :span="24">
+            <span
+              >{{ getDayForecastInfoVOValue("forecaster") }} 于
+              {{ getDayForecastInfoVOValue("time") }} 预报</span
+            >
+          </el-col>
+        </el-row>
+      </div>
     </div>
 
     <!-- 线 -->
     <div class="dashedStype"></div>
 
     <!-- 未来一周预报 -->
-    <div>
+    <div v-loading="isLoading()">
       <el-table :data="getWeekDayForecastCityVO()" stripe style="width: 100%">
         <el-table-column label="时间" fixed>
           <template slot-scope="scope">
@@ -148,18 +155,19 @@
         <el-table-column prop="humidity" label="相对湿度"> </el-table-column>
         <el-table-column prop="visibility" label="能见度"> </el-table-column>
       </el-table>
-    </div>
 
-    <el-row class="rowStype">
-      <el-col :span="24">
-        <span>【一周预告】{{ getWeekForecastInfoValue("weekRemark") }}</span>
-      </el-col>
-    </el-row>
+      <el-row class="rowStype">
+        <el-col :span="24">
+          <span>【一周预告】{{ getWeekForecastInfoValue("weekRemark") }}</span>
+        </el-col>
+      </el-row>
+    </div>
 
     <!-- 线 -->
     <div class="dashedStype"></div>
 
-    <div>
+    <!-- 各种指数模块 -->
+    <div v-loading="isLoading()">
       <el-row class="rowStype">
         <el-col :span="2">
           <div>
@@ -313,10 +321,10 @@
           <span>暑热指数为{{ getDayForecastIndexVOValue("heat") }}</span>
         </el-col>
       </el-row>
-    </div>
 
-    <div class="rowStype remarkStype">
-      {{ getWeekForecastInfoValue("forecaster7Day") }} 预报
+      <div class="rowStype remarkStype">
+        {{ getWeekForecastInfoValue("forecaster7Day") }} 预报
+      </div>
     </div>
 
     <div style="text-align: center">
@@ -386,6 +394,10 @@ export default {
       //一周天气预报数据
       weekForecastVO: {},
       weatherImageIp: "http://jmqx.jiangmen.cn/material/tqpic/",
+      // 目前请求到的接口数
+      dataCount: 0,
+      // 总共需要完成接口数
+      dataCountTotal: 3,
     };
   },
 
@@ -394,6 +406,11 @@ export default {
   },
 
   methods: {
+    // 是否显示loading
+    isLoading() {
+      return  this.dataCount < this.dataCountTotal;
+    },
+
     // 获取今日天气预报图标
     getDayForecastCityIcon() {
       const iconUrl =
@@ -495,36 +512,41 @@ export default {
 
     //拉取所有的天气数据
     requestWeatherData() {
+      this.dataCount = 0;
+
       //实时天气数据
       axios.post("api/weather/getRealTimeData").then(
         (response) => {
-          // console.log("resp = " + JSON.stringify(response.data.data));
           this.realTimeDataVO = response.data.data;
+          this.dataCount = (this.dataCount + 1);
         },
         (response) => {
           this.$message.error("实时天气数据请求失败！");
+          this.dataCount = (this.dataCount + 1);
         }
       );
 
       //今天天气预报
       axios.post("api/weather/getDayForecast").then(
         (response) => {
-          // console.log("resp = " + JSON.stringify(response.data.data));
           this.dayForecastVO = response.data.data;
+          this.dataCount = (this.dataCount + 1);
         },
         (response) => {
           this.$message.error("今天天气预报请求失败！");
+          this.dataCount = (this.dataCount + 1);
         }
       );
 
       //一周天气预报
       axios.post("api/weather/getWeekForecast").then(
         (response) => {
-          // console.log("resp = " + JSON.stringify(response.data.data));
           this.weekForecastVO = response.data.data;
+          this.dataCount = (this.dataCount + 1);
         },
         (response) => {
           this.$message.error("一周天气预报请求失败！");
+          this.dataCount = (this.dataCount + 1);
         }
       );
     },
