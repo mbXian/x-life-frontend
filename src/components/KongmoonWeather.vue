@@ -37,34 +37,43 @@
       >
     </div>
     <div>
-      <el-row>
+      <el-row class="rowStype">
         <el-col :span="12">
-          <span>风速：{{ realTimeDataVO.windSpeed }}m/s</span>
+          <span>【风速】{{ realTimeDataVO.windSpeed }}m/s</span>
         </el-col>
         <el-col :span="12">
-          <span>风力：{{ realTimeDataVO.windPower }}</span>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <span>日降雨量：{{ realTimeDataVO.dailyRainfall }}毫米</span>
-        </el-col>
-        <el-col :span="12">
-          <span>相对湿度：{{ realTimeDataVO.relativeHumidity }}%</span>
+          <span>【风力】{{ realTimeDataVO.windPower }}</span>
         </el-col>
       </el-row>
-      <el-row>
+
+      <el-row class="rowStype">
         <el-col :span="12">
-          <span>风向：{{ getRealTimeWindDirection() }}</span>
+          <span>【风向】{{ getRealTimeWindDirection() }}</span>
+        </el-col>
+        <el-col :span="12"> </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="12">
+          <span>【日降雨量】{{ realTimeDataVO.dailyRainfall }}毫米</span>
         </el-col>
         <el-col :span="12">
-          <span>检测时间：{{ realTimeDataVO.detectionDateTimeString }}</span>
+          <span>【相对湿度】{{ realTimeDataVO.relativeHumidity }}%</span>
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype remarkStype">
+        <el-col :span="24">
+          <span>{{ realTimeDataVO.detectionDateTimeString }} 检测</span>
         </el-col>
       </el-row>
     </div>
+
     <!-- 线 -->
     <div class="lineStype"></div>
+
     <div>未来24小时预报：</div>
+
     <div style="text-align: center">
       <!-- 预报图标 -->
       <el-image
@@ -73,87 +82,46 @@
         fit="fill"
       ></el-image>
     </div>
+
     <div>
-      <el-row>
+      <el-row class="rowStype">
         <el-col :span="12">
-          <span>天气：{{ getDayForecastCityValue("weatherShape") }}</span>
+          <span>【天气】{{ getDayForecastCityValue("weatherShape") }}</span>
         </el-col>
         <el-col :span="12">
-          <span>空气：{{ getDayForecastCityValue("air") }}</span>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <span>风速：{{ getDayForecastCityValue("windSpeed") }}</span>
-        </el-col>
-        <el-col :span="12">
-          <span>风向：{{ getDayForecastCityValue("windDirection") }}</span>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <span>紫外线：{{ getDayForecastIndexVOValue("ultraviolet") }}</span>
-        </el-col>
-        <el-col :span="12">
-          <span>舒适度：{{ getDayForecastIndexVOValue("comfortLevel") }}</span>
+          <span>【空气】{{ getDayForecastCityValue("air") }}</span>
         </el-col>
       </el-row>
 
-      <el-row>
+      <el-row class="rowStype">
         <el-col :span="12">
-          <span>城市火警：{{ getDayForecastIndexVOValue("cityFire") }}</span>
+          <span>【风速】{{ getDayForecastCityValue("windSpeed") }}</span>
         </el-col>
         <el-col :span="12">
-          <span>晾晒指数：{{ getDayForecastIndexVOValue("sunCure") }}</span>
+          <span>【风向】{{ getDayForecastCityValue("windDirection") }}</span>
         </el-col>
       </el-row>
 
-      <el-row>
-        <el-col :span="12">
-          <span>霉变指数：{{ getDayForecastIndexVOValue("mildew") }}</span>
+      <el-row class="rowStype">
+        <el-col :span="24">
+          <span>【预告】{{ getDayForecastInfoVOValue("weatherDesc") }}</span>
         </el-col>
-        <el-col :span="12">
+      </el-row>
+
+      <el-row class="rowStype remarkStype">
+        <el-col :span="24">
           <span
-            >晨运指数：{{ getDayForecastIndexVOValue("morningExercise") }}</span
+            >{{ getDayForecastInfoVOValue("forecaster") }} 于
+            {{ getDayForecastInfoVOValue("time") }} 预报</span
           >
         </el-col>
       </el-row>
-
-      <el-row>
-        <el-col :span="12">
-          <span>森林火警：{{ getDayForecastIndexVOValue("forestFire") }}</span>
-        </el-col>
-        <el-col :span="12">
-          <span>穿衣指数：{{ getDayForecastIndexVOValue("dress") }}</span>
-        </el-col>
-      </el-row>
-
-      <el-row>
-        <el-col :span="12">
-          <span>空气指数：{{ getDayForecastIndexVOValue("air") }}</span>
-        </el-col>
-        <el-col :span="12">
-          <span>暑热指数：{{ getDayForecastIndexVOValue("heat") }}</span>
-        </el-col>
-      </el-row>
-
-      <el-row>
-        <el-col :span="12">
-          <span>预报人员：{{ getDayForecastInfoVOValue("forecaster") }}</span>
-        </el-col>
-        <el-col :span="12">
-          <span>检测时间：{{ getDayForecastInfoVOValue("time") }}</span>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="24">
-          <span>描述：{{ getDayForecastInfoVOValue("weatherDesc") }}</span>
-        </el-col>
-      </el-row>
     </div>
+
     <!-- 线 -->
     <div class="lineStype"></div>
-    <div>未来一周预报：</div>
+
+    <!-- 未来一周预报 -->
     <div>
       <el-table :data="getWeekDayForecastCityVO()" stripe style="width: 100%">
         <el-table-column prop="time" label="日期"> </el-table-column>
@@ -175,13 +143,179 @@
         <el-table-column prop="visibility" label="能见度"> </el-table-column>
       </el-table>
     </div>
+
+    <el-row class="rowStype">
+      <el-col :span="24">
+        <span>【一周预告】{{ getWeekForecastInfoValue("weekRemark") }}</span>
+      </el-col>
+    </el-row>
+
+    <!-- 线 -->
+    <div class="lineStype"></div>
+
     <div>
-      <span>预报人员：{{ getWeekForecastInfoValue("forecaster7Day") }}</span>
+      <el-row class="rowStype">
+        <el-col :span="2">
+          <div>
+            <el-image
+              class="valueIconStype"
+              src="http://jmqx.jiangmen.cn/material/tqzs/zwx.gif"
+              fit="fill"
+            ></el-image>
+          </div>
+        </el-col>
+        <el-col :span="22">
+          <span
+            >紫外线强度为{{ getDayForecastIndexVOValue("ultraviolet") }}</span
+          >
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="2">
+          <div>
+            <el-image
+              class="valueIconStype"
+              src="http://jmqx.jiangmen.cn/material/tqzs/ssd.gif"
+              fit="fill"
+            ></el-image>
+          </div>
+        </el-col>
+        <el-col :span="22">
+          <span>舒适度为{{ getDayForecastIndexVOValue("comfortLevel") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="2">
+          <div>
+            <el-image
+              class="valueIconStype"
+              src="http://jmqx.jiangmen.cn/material/tqzs/cshx.gif"
+              fit="fill"
+            ></el-image>
+          </div>
+        </el-col>
+        <el-col :span="22">
+          <span>城市火警为{{ getDayForecastIndexVOValue("cityFire") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="2">
+          <div>
+            <el-image
+              class="valueIconStype"
+              src="http://jmqx.jiangmen.cn/material/tqzs/ls.gif"
+              fit="fill"
+            ></el-image>
+          </div>
+        </el-col>
+        <el-col :span="22">
+          <span>晾晒指数为{{ getDayForecastIndexVOValue("sunCure") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="2">
+          <div>
+            <el-image
+              class="valueIconStype"
+              src="http://jmqx.jiangmen.cn/material/tqzs/mb.gif"
+              fit="fill"
+            ></el-image>
+          </div>
+        </el-col>
+        <el-col :span="22">
+          <span>霉变指数为{{ getDayForecastIndexVOValue("mildew") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="2">
+          <div>
+            <el-image
+              class="valueIconStype"
+              src="http://jmqx.jiangmen.cn/material/tqzs/cl.gif"
+              fit="fill"
+            ></el-image>
+          </div>
+        </el-col>
+        <el-col :span="22">
+          <span
+            >晨运指数为{{ getDayForecastIndexVOValue("morningExercise") }}</span
+          >
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="2">
+          <div>
+            <el-image
+              class="valueIconStype"
+              src="http://jmqx.jiangmen.cn/material/tqzs/slhx.gif"
+              fit="fill"
+            ></el-image>
+          </div>
+        </el-col>
+        <el-col :span="22">
+          <span>森林火警为{{ getDayForecastIndexVOValue("forestFire") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="2">
+          <div>
+            <el-image
+              class="valueIconStype"
+              src="http://jmqx.jiangmen.cn/material/tqzs/cy.gif"
+              fit="fill"
+            ></el-image>
+          </div>
+        </el-col>
+        <el-col :span="22">
+          <span>穿衣指数为{{ getDayForecastIndexVOValue("dress") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="2">
+          <div>
+            <el-image
+              class="valueIconStype"
+              src="air.png"
+              fit="fill"
+            ></el-image>
+          </div>
+        </el-col>
+        <el-col :span="22">
+          <span>空气指数为{{ getDayForecastIndexVOValue("air") }}</span>
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="2">
+          <div>
+            <el-image
+              class="valueIconStype"
+              src="../../assets/sun.png"
+              fit="fill"
+            ></el-image>
+          </div>
+        </el-col>
+        <el-col :span="22">
+          <span>暑热指数为{{ getDayForecastIndexVOValue("heat") }}</span>
+        </el-col>
+      </el-row>
     </div>
-    <div>
-      <span>一周描述：{{ getWeekForecastInfoValue("weekRemark") }}</span>
-    </div>
-    <div>技术支持：@兵</div>
+
+    <el-row class="rowStype remarkStype">
+      <el-col :span="24">
+        <span>{{ getWeekForecastInfoValue("forecaster7Day") }} 预报</span>
+      </el-col>
+    </el-row>
+
+    <div class="rowStype">技术支持：@兵</div>
   </div>
 </template>
 
@@ -386,12 +520,6 @@ export default {
 
 
 <style>
-.testStype {
-  background-color: #67c23a;
-}
-.testStype1 {
-  background-color: chocolate;
-}
 .lineStype {
   background-color: #000000;
   height: 1px;
@@ -399,7 +527,7 @@ export default {
   margin-bottom: 10px;
 }
 .contentStype {
-  background-color: burlywood;
+  background-color: floralwhite;
 }
 .topButtonViewStype {
   margin-top: 10px;
@@ -414,5 +542,19 @@ export default {
 .temperatureRangeStype {
   font-size: 20px;
   color: blueviolet;
+}
+.rowStype {
+  margin-top: 5px;
+}
+.dashedStype {
+  border: 1px dashed #e6e6e6;
+}
+.remarkStype {
+  font-size: 13px;
+  color: darkgray;
+}
+.valueIconStype {
+  width: 30px;
+  height: 30px;
 }
 </style>
