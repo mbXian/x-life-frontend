@@ -5,7 +5,7 @@
       <!-- 地区选项 -->
       <el-select
         v-model="district"
-        style="width: 80px"
+        style="width: 90px"
         @change="handleChangeDistrict"
       >
         <el-option
@@ -24,28 +24,21 @@
       ></el-button>
     </div>
     <!-- 线 -->
-    <div class="lineStype"></div>
-    <div>实时数据：</div>
+    <div class="dashedStype"></div>
+
+    <div class="titleStype">实时数据</div>
+
     <div class="temperatureStype">
       <!-- 实时温度 -->
-      <span>{{ realTimeDataVO.temperature }}°</span>
+      <div>{{ realTimeDataVO.temperature }}°</div>
       <!-- 温度范围 -->
-      <span class="temperatureRangeStype"
-        >{{ getDayForecastCityValue("tmin") }}°~{{
+      <div class="temperatureRangeStype">
+        {{ getDayForecastCityValue("tmin") }}°~{{
           getDayForecastCityValue("tmax")
-        }}°</span
-      >
+        }}°
+      </div>
     </div>
     <div>
-      <el-row class="rowStype">
-        <el-col :span="12">
-          <span>【风速】{{ realTimeDataVO.windSpeed }}m/s</span>
-        </el-col>
-        <el-col :span="12">
-          <span>【风力】{{ realTimeDataVO.windPower }}</span>
-        </el-col>
-      </el-row>
-
       <el-row class="rowStype">
         <el-col :span="12">
           <span>【风向】{{ getRealTimeWindDirection() }}</span>
@@ -57,7 +50,16 @@
 
       <el-row class="rowStype">
         <el-col :span="12">
+          <span>【风力】{{ realTimeDataVO.windPower }}</span>
+        </el-col>
+        <el-col :span="12">
           <span>【相对湿度】{{ realTimeDataVO.relativeHumidity }}%</span>
+        </el-col>
+      </el-row>
+
+      <el-row class="rowStype">
+        <el-col :span="12">
+          <span>【风速】{{ realTimeDataVO.windSpeed }}m/s</span>
         </el-col>
         <el-col :span="12"> </el-col>
       </el-row>
@@ -70,9 +72,9 @@
     </div>
 
     <!-- 线 -->
-    <div class="lineStype"></div>
+    <div class="dashedStype"></div>
 
-    <div>未来24小时预报：</div>
+    <div class="titleStype" style="width: 130px">未来24小时预报</div>
 
     <div style="text-align: center">
       <!-- 预报图标 -->
@@ -86,10 +88,10 @@
     <div>
       <el-row class="rowStype">
         <el-col :span="12">
-          <span>【天气】{{ getDayForecastCityValue("weatherShape") }}</span>
+          <span>【风向】{{ getDayForecastCityValue("windDirection") }}</span>
         </el-col>
         <el-col :span="12">
-          <span>【空气】{{ getDayForecastCityValue("air") }}</span>
+          <span>【天气】{{ getDayForecastCityValue("weatherShape") }}</span>
         </el-col>
       </el-row>
 
@@ -98,7 +100,7 @@
           <span>【风速】{{ getDayForecastCityValue("windSpeed") }}</span>
         </el-col>
         <el-col :span="12">
-          <span>【风向】{{ getDayForecastCityValue("windDirection") }}</span>
+          <span>【空气】{{ getDayForecastCityValue("air") }}</span>
         </el-col>
       </el-row>
 
@@ -119,13 +121,17 @@
     </div>
 
     <!-- 线 -->
-    <div class="lineStype"></div>
+    <div class="dashedStype"></div>
 
     <!-- 未来一周预报 -->
     <div>
       <el-table :data="getWeekDayForecastCityVO()" stripe style="width: 100%">
-        <el-table-column prop="time" label="日期"> </el-table-column>
-        <el-table-column prop="week" label="星期"> </el-table-column>
+        <el-table-column label="时间" fixed>
+          <template slot-scope="scope">
+            <div>{{ scope.row.time }}</div>
+            <div>{{ scope.row.week }}</div>
+          </template>
+        </el-table-column>
         <el-table-column label="图标">
           <template slot-scope="scope">
             <el-image
@@ -151,7 +157,7 @@
     </el-row>
 
     <!-- 线 -->
-    <div class="lineStype"></div>
+    <div class="dashedStype"></div>
 
     <div>
       <el-row class="rowStype">
@@ -315,13 +321,15 @@
 
     <div style="text-align: center">
       <span>
-        <span style="border-radius:50%; color: darkturquoise">技术支持：@兵</span>
+        <span style="border-radius: 50%; color: darkturquoise"
+          >技术支持：@兵</span
+        >
         <el-image
-              class="valueIconStype"
-              style="border-radius:50%;"
-              src="https://gitee.com/pic-project/pic-it-work-001/raw/master/photoshop/portrait.png"
-              fit="fill"
-            ></el-image>
+          class="valueIconStype"
+          style="border-radius: 50%"
+          src="https://gitee.com/pic-project/pic-it-work-001/raw/master/photoshop/portrait.png"
+          fit="fill"
+        ></el-image>
       </span>
     </div>
   </div>
@@ -338,31 +346,31 @@ export default {
       districtOptions: [
         {
           value: "蓬江",
-          label: "蓬江",
+          label: "蓬江区",
         },
         {
           value: "新会",
-          label: "新会",
+          label: "新会区",
         },
         {
           value: "江海",
-          label: "江海",
+          label: "江海区",
         },
         {
           value: "鹤山",
-          label: "鹤山",
+          label: "鹤山市",
         },
         {
           value: "开平",
-          label: "开平",
+          label: "开平市",
         },
         {
           value: "台山",
-          label: "台山",
+          label: "台山市",
         },
         {
           value: "恩平",
-          label: "恩平",
+          label: "恩平市",
         },
         {
           value: "川岛",
@@ -538,6 +546,11 @@ export default {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.dashedStype {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px dashed darkgray;
+}
 .contentStype {
   background-color: floralwhite;
 }
@@ -548,18 +561,16 @@ export default {
 .temperatureStype {
   text-align: center;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 60px;
   color: blueviolet;
 }
 .temperatureRangeStype {
-  font-size: 20px;
-  color:darkturquoise;
+  text-align: center;
+  font-size: 18px;
+  color: darkturquoise;
 }
 .rowStype {
   margin-top: 5px;
-}
-.dashedStype {
-  border: 1px dashed #e6e6e6;
 }
 .remarkStype {
   font-size: 13px;
@@ -569,5 +580,13 @@ export default {
 .valueIconStype {
   width: 30px;
   height: 30px;
+}
+.titleStype {
+  border: 1px solid darkturquoise;
+  background: #dddddd;
+  border-radius: 25px;
+  font-weight: bold;
+  width: 80px;
+  text-align: center;
 }
 </style>
