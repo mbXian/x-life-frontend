@@ -42,25 +42,30 @@
       <div>
         <el-row class="rowStype">
           <el-col :span="12">
-            <span>【风向】{{ getRealTimeWindDirection() }}</span>
+            <span class="indexKeyStype">【风向】</span>
+            <span>{{ getRealTimeWindDirection() }}</span>
           </el-col>
           <el-col :span="12">
-            <span>【日降雨量】{{ realTimeDataVO.dailyRainfall }}毫米</span>
-          </el-col>
-        </el-row>
-
-        <el-row class="rowStype">
-          <el-col :span="12">
-            <span>【风力】{{ realTimeDataVO.windPower }}</span>
-          </el-col>
-          <el-col :span="12">
-            <span>【相对湿度】{{ realTimeDataVO.relativeHumidity }}%</span>
+            <span class="indexKeyStype">【日降雨量】</span>
+            <span>{{ realTimeDataVO.dailyRainfall }}毫米</span>
           </el-col>
         </el-row>
 
         <el-row class="rowStype">
           <el-col :span="12">
-            <span>【风速】{{ realTimeDataVO.windSpeed }}m/s</span>
+            <span class="indexKeyStype">【风力】</span>
+            <span>{{ realTimeDataVO.windPower }}</span>
+          </el-col>
+          <el-col :span="12">
+            <span class="indexKeyStype">【相对湿度】</span>
+            <span>{{ realTimeDataVO.relativeHumidity }}%</span>
+          </el-col>
+        </el-row>
+
+        <el-row class="rowStype">
+          <el-col :span="12">
+            <span class="indexKeyStype">【风速】</span>
+            <span>{{ realTimeDataVO.windSpeed }}m/s</span>
           </el-col>
           <el-col :span="12"> </el-col>
         </el-row>
@@ -92,25 +97,30 @@
       <div>
         <el-row class="rowStype">
           <el-col :span="12">
-            <span>【风向】{{ getDayForecastCityValue("windDirection") }}</span>
+            <span class="indexKeyStype">【风向】</span>
+            <span>{{ getDayForecastCityValue("windDirection") }}</span>
           </el-col>
           <el-col :span="12">
-            <span>【天气】{{ getDayForecastCityValue("weatherShape") }}</span>
+            <span class="indexKeyStype">【天气】</span>
+            <span>{{ getDayForecastCityValue("weatherShape") }}</span>
           </el-col>
         </el-row>
 
         <el-row class="rowStype">
           <el-col :span="12">
-            <span>【风速】{{ getDayForecastCityValue("windSpeed") }}</span>
+            <span class="indexKeyStype">【风速】</span>
+            <span>{{ getDayForecastCityValue("windSpeed") }}</span>
           </el-col>
           <el-col :span="12">
-            <span>【空气】{{ getDayForecastCityValue("air") }}</span>
+            <span class="indexKeyStype">【空气】</span>
+            <span>{{ getDayForecastCityValue("air") }}</span>
           </el-col>
         </el-row>
 
         <el-row class="rowStype">
           <el-col :span="24">
-            <span>【预告】{{ getDayForecastInfoVOValue("weatherDesc") }}</span>
+            <span class="indexKeyStype">【预告】</span>
+            <span>{{ getDayForecastInfoVOValue("weatherDesc") }}</span>
           </el-col>
         </el-row>
 
@@ -156,7 +166,8 @@
 
       <el-row class="rowStype">
         <el-col :span="24">
-          <span>【一周预告】{{ getWeekForecastInfoValue("weekRemark") }}</span>
+          <span class="indexKeyStype">【一周预告】</span>
+          <span>{{ getWeekForecastInfoValue("weekRemark") }}</span>
         </el-col>
       </el-row>
     </div>
@@ -646,5 +657,8 @@ export default {
   font-weight: bold;
   width: 80px;
   text-align: center;
+}
+.indexKeyStype {
+  font-weight: bold;
 }
 </style>
