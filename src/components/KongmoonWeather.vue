@@ -618,7 +618,7 @@ export default {
       axios.post("api/weather/getWarningSignal").then(
         (response) => {
           this.warningSignalVOList = response.data.data;
-          console.log(JSON.stringify(this.warningSignalVOList));
+          this.warningSignalImageList = [];
           this.warningSignalVOList.forEach(warningSignalVO => {
             if (warningSignalVO.area === this.district) {
               this.warningSignalVO = warningSignalVO;
