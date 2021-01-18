@@ -38,6 +38,16 @@
             getDayForecastCityValue("tmax")
           }}°
         </div>
+        <!-- 预警信号 -->
+        <div style="text-align: center;">
+          <el-image
+          v-for="(imageUrl, index) in warningSignalImageList"
+                   :key="index"
+          style="width: 45px; height: 45px"
+          :src="imageUrl"
+          fit="fill"
+        ></el-image>
+        </div>
       </div>
       <div>
         <el-row class="rowStype">
@@ -67,7 +77,10 @@
             <span class="indexKeyStype">【风速】</span>
             <span>{{ realTimeDataVO.windSpeed }}m/s</span>
           </el-col>
-          <el-col :span="12"> </el-col>
+          <el-col :span="12" v-if="warningSignalVO.yjxhStr != null && warningSignalVO.yjxhStr != ''"> 
+            <span class="indexKeyStype">【预警】</span>
+            <span>{{ warningSignalVO.yjxhStr }}</span>
+          </el-col>
         </el-row>
 
         <el-row class="rowStype remarkStype">
@@ -402,11 +415,15 @@ export default {
       dayForecastVO: {},
       //一周天气预报数据
       weekForecastVO: {},
+      //预警信号
+      warningSignalVO: {},
+      warningSignalImageList: [],
+      //图片IP
       weatherImageIp: "http://jmqx.jiangmen.cn/material/tqpic/",
       // 目前请求到的接口数
       dataCount: 0,
       // 总共需要完成接口数
-      dataCountTotal: 3,
+      dataCountTotal: 4,
       //温度颜色
       temperatureColorStype: {
         color: "#000",
@@ -596,6 +613,54 @@ export default {
           this.dataCount = this.dataCount + 1;
         }
       );
+
+      //预警信息
+      axios.post("api/weather/getWarningSignal").then(
+        (response) => {
+          this.warningSignalVOList = response.data.data;
+          console.log(JSON.stringify(this.warningSignalVOList));
+          this.warningSignalVOList.forEach(warningSignalVO => {
+            if (warningSignalVO.area === this.district) {
+              this.warningSignalVO = warningSignalVO;
+              if (this.warningSignalVO.path1) {
+                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path1);
+              }
+              if (this.warningSignalVO.path2) {
+                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path2);
+              }
+              if (this.warningSignalVO.path3) {
+                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path3);
+              }
+              if (this.warningSignalVO.path4) {
+                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path4);
+              }
+              if (this.warningSignalVO.path5) {
+                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path5);
+              }
+              if (this.warningSignalVO.path6) {
+                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path6);
+              }
+              if (this.warningSignalVO.path7) {
+                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path7);
+              }
+              if (this.warningSignalVO.path8) {
+                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path8);
+              }
+              if (this.warningSignalVO.path9) {
+                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path9);
+              }
+              if (this.warningSignalVO.path10) {
+                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path10);
+              }
+            }
+          });
+          this.dataCount = this.dataCount + 1;
+        },
+        (response) => {
+          this.$message.error("预警信息请求失败！");
+          this.dataCount = this.dataCount + 1;
+        }
+      );
     },
 
     //切换地区
@@ -635,8 +700,9 @@ export default {
 }
 .temperatureRangeStype {
   text-align: center;
+  font-weight: bold;
   font-size: 18px;
-  color: darkturquoise;
+  color: black;
 }
 .rowStype {
   margin-top: 5px;

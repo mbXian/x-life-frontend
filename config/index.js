@@ -13,6 +13,7 @@ module.exports = {
     proxyTable: {
       //跨域处理
       '/api': {
+        // target: 'http://localhost:8091',//设置你调用的接口域名和端口号 
         target: 'http://111.229.74.28:8091',//设置你调用的接口域名和端口号 
         changeOrigin: true,//允许跨域
         pathRewrite: {
