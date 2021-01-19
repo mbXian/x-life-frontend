@@ -121,6 +121,8 @@
           :src="getDayForecastCityIcon()"
           fit="fill"
         ></el-image>
+        <!-- 天气 -->
+        <div style="font-weight: bold;">{{ getDayForecastCityValue("weatherShape") }}</div>
       </div>
 
       <div>
@@ -130,8 +132,8 @@
             <span>{{ getDayForecastCityValue("windDirection") }}</span>
           </el-col>
           <el-col :span="12">
-            <span class="indexKeyStype">【天气】</span>
-            <span>{{ getDayForecastCityValue("weatherShape") }}</span>
+            <span class="indexKeyStype">【空气】</span>
+            <span>{{ getDayForecastCityValue("air") }}</span>
           </el-col>
         </el-row>
 
@@ -140,10 +142,7 @@
             <span class="indexKeyStype">【风速】</span>
             <span>{{ getDayForecastCityValue("windSpeed") }}</span>
           </el-col>
-          <el-col :span="12">
-            <span class="indexKeyStype">【空气】</span>
-            <span>{{ getDayForecastCityValue("air") }}</span>
-          </el-col>
+          <el-col :span="12"> </el-col>
         </el-row>
 
         <el-row class="rowStype">
@@ -391,9 +390,7 @@ import {
   solarDay2,
   solarDay1,
 } from "@/utils/today";
-import {
-  convertRgbToHex
-} from "@/utils/color";
+import { convertRgbToHex } from "@/utils/color";
 
 export default {
   name: "KongmoonWeather",
