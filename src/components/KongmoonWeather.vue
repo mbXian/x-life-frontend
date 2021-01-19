@@ -86,17 +86,7 @@
             <span class="indexKeyStype">【风速】</span>
             <span>{{ realTimeDataVO.windSpeed }}m/s</span>
           </el-col>
-          <el-col
-            :span="12"
-            v-if="
-              warningSignalVO != null &&
-              warningSignalVO.yjxhStr != null &&
-              warningSignalVO.yjxhStr != ''
-            "
-          >
-            <span class="indexKeyStype">【预警】</span>
-            <span>{{ warningSignalVO.yjxhStr.replace("信号", "") }}</span>
-          </el-col>
+          <el-col :span="12"> </el-col>
         </el-row>
 
         <el-row class="rowStype remarkStype">
@@ -122,7 +112,9 @@
           fit="fill"
         ></el-image>
         <!-- 天气 -->
-        <div style="font-weight: bold;">{{ getDayForecastCityValue("weatherShape") }}</div>
+        <div style="font-weight: bold">
+          {{ getDayForecastCityValue("weatherShape") }}
+        </div>
       </div>
 
       <div>
