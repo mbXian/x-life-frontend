@@ -39,14 +39,17 @@
           }}°
         </div>
         <!-- 预警信号 -->
-        <div style="text-align: center;" v-if="warningSignalImageList.length > 0">
+        <div
+          style="text-align: center"
+          v-if="warningSignalImageList.length > 0"
+        >
           <el-image
-          v-for="(imageUrl, index) in warningSignalImageList"
-                   :key="index"
-          style="width: 45px; height: 45px"
-          :src="imageUrl"
-          fit="fill"
-        ></el-image>
+            v-for="(imageUrl, index) in warningSignalImageList"
+            :key="index"
+            style="width: 45px; height: 45px"
+            :src="imageUrl"
+            fit="fill"
+          ></el-image>
         </div>
       </div>
       <div>
@@ -77,15 +80,27 @@
             <span class="indexKeyStype">【风速】</span>
             <span>{{ realTimeDataVO.windSpeed }}m/s</span>
           </el-col>
-          <el-col :span="12" v-if="warningSignalVO != null && warningSignalVO.yjxhStr != null && warningSignalVO.yjxhStr != ''"> 
+          <el-col
+            :span="12"
+            v-if="
+              warningSignalVO != null &&
+              warningSignalVO.yjxhStr != null &&
+              warningSignalVO.yjxhStr != ''
+            "
+          >
             <span class="indexKeyStype">【预警】</span>
-            <span>{{ warningSignalVO.yjxhStr }}</span>
+            <span>{{ warningSignalVO.yjxhStr.replace("信号", "") }}</span>
           </el-col>
         </el-row>
 
         <el-row class="rowStype remarkStype">
           <el-col :span="24">
-            <span>{{ realTimeDataVO.detectionDateTimeString }} 检测</span>
+            <span
+              >{{
+                realTimeDataVO.detectionDateTimeString
+              }}
+              检测</span
+            >
           </el-col>
         </el-row>
       </div>
@@ -451,13 +466,13 @@ export default {
         g = 256;
         r = 0;
       } else if (temperature < 20) {
-        b = 256 - ((256/20) * (temperature - 0));
-        g = 256 - ((256/20) * (20 - temperature));
+        b = 256 - (256 / 20) * (temperature - 0);
+        g = 256 - (256 / 20) * (20 - temperature);
         r = 0;
       } else if (temperature > 20) {
         b = 0;
-        g = 256 - ((256/20) * (temperature - 20));
-        r = 256 - ((256/20) * (40 - temperature));
+        g = 256 - (256 / 20) * (temperature - 20);
+        r = 256 - (256 / 20) * (40 - temperature);
       }
       this.temperatureColorStype.color = this.convertRgbToHex(r, g, b);
     },
@@ -470,7 +485,7 @@ export default {
       g = ("0" + (Math.round(g) || 0).toString(16)).slice(-2);
       b = ("0" + (Math.round(b) || 0).toString(16)).slice(-2);
       let hex = "#" + r + g + b;
-      console.log('hex = ' + hex);
+      console.log("hex = " + hex);
       return hex;
     },
     // 获取今日天气预报图标
@@ -619,38 +634,68 @@ export default {
         (response) => {
           this.warningSignalVOList = response.data.data;
           this.warningSignalImageList = [];
-          this.warningSignalVOList.forEach(warningSignalVO => {
+          this.warningSignalVOList.forEach((warningSignalVO) => {
             if (warningSignalVO.area === this.district) {
               this.warningSignalVO = warningSignalVO;
               if (this.warningSignalVO.path1) {
-                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path1);
+                this.warningSignalImageList.push(
+                  "http://jmqx.jiangmen.cn/material/yjxh/" +
+                    this.warningSignalVO.path1
+                );
               }
               if (this.warningSignalVO.path2) {
-                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path2);
+                this.warningSignalImageList.push(
+                  "http://jmqx.jiangmen.cn/material/yjxh/" +
+                    this.warningSignalVO.path2
+                );
               }
               if (this.warningSignalVO.path3) {
-                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path3);
+                this.warningSignalImageList.push(
+                  "http://jmqx.jiangmen.cn/material/yjxh/" +
+                    this.warningSignalVO.path3
+                );
               }
               if (this.warningSignalVO.path4) {
-                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path4);
+                this.warningSignalImageList.push(
+                  "http://jmqx.jiangmen.cn/material/yjxh/" +
+                    this.warningSignalVO.path4
+                );
               }
               if (this.warningSignalVO.path5) {
-                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path5);
+                this.warningSignalImageList.push(
+                  "http://jmqx.jiangmen.cn/material/yjxh/" +
+                    this.warningSignalVO.path5
+                );
               }
               if (this.warningSignalVO.path6) {
-                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path6);
+                this.warningSignalImageList.push(
+                  "http://jmqx.jiangmen.cn/material/yjxh/" +
+                    this.warningSignalVO.path6
+                );
               }
               if (this.warningSignalVO.path7) {
-                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path7);
+                this.warningSignalImageList.push(
+                  "http://jmqx.jiangmen.cn/material/yjxh/" +
+                    this.warningSignalVO.path7
+                );
               }
               if (this.warningSignalVO.path8) {
-                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path8);
+                this.warningSignalImageList.push(
+                  "http://jmqx.jiangmen.cn/material/yjxh/" +
+                    this.warningSignalVO.path8
+                );
               }
               if (this.warningSignalVO.path9) {
-                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path9);
+                this.warningSignalImageList.push(
+                  "http://jmqx.jiangmen.cn/material/yjxh/" +
+                    this.warningSignalVO.path9
+                );
               }
               if (this.warningSignalVO.path10) {
-                this.warningSignalImageList.push("http://jmqx.jiangmen.cn/material/yjxh/" + this.warningSignalVO.path10);
+                this.warningSignalImageList.push(
+                  "http://jmqx.jiangmen.cn/material/yjxh/" +
+                    this.warningSignalVO.path10
+                );
               }
             }
           });
