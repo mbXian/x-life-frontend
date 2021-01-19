@@ -39,7 +39,7 @@
           }}°
         </div>
         <!-- 预警信号 -->
-        <div style="text-align: center;">
+        <div style="text-align: center;" v-if="warningSignalImageList.length > 0">
           <el-image
           v-for="(imageUrl, index) in warningSignalImageList"
                    :key="index"
@@ -77,7 +77,7 @@
             <span class="indexKeyStype">【风速】</span>
             <span>{{ realTimeDataVO.windSpeed }}m/s</span>
           </el-col>
-          <el-col :span="12" v-if="warningSignalVO.yjxhStr != null && warningSignalVO.yjxhStr != ''"> 
+          <el-col :span="12" v-if="warningSignalVO != null && warningSignalVO.yjxhStr != null && warningSignalVO.yjxhStr != ''"> 
             <span class="indexKeyStype">【预警】</span>
             <span>{{ warningSignalVO.yjxhStr }}</span>
           </el-col>
