@@ -16,8 +16,14 @@
         >
         </el-option>
       </el-select>
+
       <!-- 刷新按钮 -->
       <el-button type="primary" @click="requestWeatherData">刷新</el-button>
+
+      <!-- 当前日期 -->
+      <div>
+        <span>{{ dateTimeString }}</span>
+      </div>
     </div>
 
     <!-- 线 -->
@@ -95,12 +101,7 @@
 
         <el-row class="rowStype remarkStype">
           <el-col :span="24">
-            <span
-              >{{
-                realTimeDataVO.detectionDateTimeString
-              }}
-              检测</span
-            >
+            <span>{{ realTimeDataVO.detectionDateTimeString }} 检测</span>
           </el-col>
         </el-row>
       </div>
@@ -382,6 +383,14 @@
 
 <script>
 import axios from "axios";
+import {
+  YYMMDD,
+  weekday,
+  cDay,
+  solarDay3,
+  solarDay2,
+  solarDay1,
+} from "@/utils/today";
 
 export default {
   name: "KongmoonWeather",
@@ -443,14 +452,22 @@ export default {
       temperatureColorStype: {
         color: "#000",
       },
+      //日期
+      dateTimeString: "",
     };
   },
 
   created() {
+    this.initData();
     this.requestWeatherData();
   },
 
   methods: {
+    //初始化数据
+    initData() {
+      this.dateTimeString = YYMMDD() + " " + weekday();
+    },
+
     // 是否显示loading
     isLoading() {
       return this.dataCount < this.dataCountTotal;
@@ -485,7 +502,6 @@ export default {
       g = ("0" + (Math.round(g) || 0).toString(16)).slice(-2);
       b = ("0" + (Math.round(b) || 0).toString(16)).slice(-2);
       let hex = "#" + r + g + b;
-      console.log("hex = " + hex);
       return hex;
     },
     // 获取今日天气预报图标
