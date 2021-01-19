@@ -391,6 +391,9 @@ import {
   solarDay2,
   solarDay1,
 } from "@/utils/today";
+import {
+  convertRgbToHex
+} from "@/utils/color";
 
 export default {
   name: "KongmoonWeather",
@@ -491,19 +494,9 @@ export default {
         g = 256 - (256 / 20) * (temperature - 20);
         r = 256 - (256 / 20) * (40 - temperature);
       }
-      this.temperatureColorStype.color = this.convertRgbToHex(r, g, b);
+      this.temperatureColorStype.color = convertRgbToHex(r, g, b);
     },
-    // rgb转hex
-    convertRgbToHex(r, g, b) {
-      r = Math.max(Math.min(Number(r), 100), 0) * 2.55;
-      g = Math.max(Math.min(Number(g), 100), 0) * 2.55;
-      b = Math.max(Math.min(Number(b), 100), 0) * 2.55;
-      r = ("0" + (Math.round(r) || 0).toString(16)).slice(-2);
-      g = ("0" + (Math.round(g) || 0).toString(16)).slice(-2);
-      b = ("0" + (Math.round(b) || 0).toString(16)).slice(-2);
-      let hex = "#" + r + g + b;
-      return hex;
-    },
+
     // 获取今日天气预报图标
     getDayForecastCityIcon() {
       const iconUrl =
@@ -726,7 +719,6 @@ export default {
 
     //切换地区
     handleChangeDistrict(value) {
-      console.log(value);
       this.requestWeatherData();
     },
   },
