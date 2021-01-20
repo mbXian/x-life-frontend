@@ -55,6 +55,7 @@
             style="width: 45px; height: 45px"
             :src="imageUrl"
             fit="fill"
+            @click="handleWarningSignalImage()"
           ></el-image>
         </div>
       </div>
@@ -706,6 +707,20 @@ export default {
       );
     },
 
+    // 点击预警图片
+    handleWarningSignalImage() {
+      console.log('sss' + this.warningSignalVO.yjxh_str);
+      if (
+        this.warningSignalVO &&
+        this.warningSignalVO.yjxhStr &&
+        this.warningSignalVO.yjxhStr.length > 0
+      ) {
+        this.$message({
+          message: this.warningSignalVO.yjxhStr,
+          type: "warning",
+        });
+      }
+    },
     //切换地区
     handleChangeDistrict(value) {
       this.requestWeatherData();
