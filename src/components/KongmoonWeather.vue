@@ -181,7 +181,7 @@
         <el-table-column prop="temperature" label="温度(°)"> </el-table-column>
         <el-table-column prop="windDirection" label="风向"> </el-table-column>
         <el-table-column prop="windSpeed" label="风速"> </el-table-column>
-        <el-table-column prop="humidity" label="相对湿度"> </el-table-column>
+        <el-table-column prop="humidity" label="相对湿度(%)"> </el-table-column>
         <el-table-column prop="visibility" label="能见度"> </el-table-column>
       </el-table>
 
@@ -709,7 +709,6 @@ export default {
 
     // 点击预警图片
     handleWarningSignalImage() {
-      console.log('sss' + this.warningSignalVO.yjxh_str);
       if (
         this.warningSignalVO &&
         this.warningSignalVO.yjxhStr &&
