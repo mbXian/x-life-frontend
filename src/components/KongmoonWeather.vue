@@ -53,9 +53,9 @@
             v-for="(imageUrl, index) in warningSignalImageList"
             :key="index"
             style="width: 45px; height: 45px"
-            :src="imageUrl"
+            :src="warningSignalImageIp + imageUrl"
             fit="fill"
-            @click="handleWarningSignalImage()"
+            @click="handleWarningSignalImage(imageUrl)"
           ></el-image>
         </div>
       </div>
@@ -168,7 +168,7 @@
             <div>{{ scope.row.week }}</div>
           </template>
         </el-table-column>
-        <el-table-column label="图标">
+        <el-table-column label="天气图">
           <template slot-scope="scope">
             <el-image
               style="width: 30px; height: 30px"
@@ -181,7 +181,7 @@
         <el-table-column prop="temperature" label="温度(°)"> </el-table-column>
         <el-table-column prop="windDirection" label="风向"> </el-table-column>
         <el-table-column prop="windSpeed" label="风速"> </el-table-column>
-        <el-table-column prop="humidity" label="相对湿度(%)"> </el-table-column>
+        <el-table-column prop="humidity" label="相对湿度"> </el-table-column>
         <el-table-column prop="visibility" label="能见度"> </el-table-column>
       </el-table>
 
@@ -435,8 +435,10 @@ export default {
       //预警信号
       warningSignalVO: {},
       warningSignalImageList: [],
-      //图片IP
+      //天气图片IP
       weatherImageIp: "http://jmqx.jiangmen.cn/material/tqpic/",
+      //预警图片Ip
+      warningSignalImageIp: "http://jmqx.jiangmen.cn/material/yjxh/",
       // 目前请求到的接口数
       dataCount: 0,
       // 总共需要完成接口数
@@ -637,64 +639,34 @@ export default {
             if (warningSignalVO.area === this.district) {
               this.warningSignalVO = warningSignalVO;
               if (this.warningSignalVO.path1) {
-                this.warningSignalImageList.push(
-                  "http://jmqx.jiangmen.cn/material/yjxh/" +
-                    this.warningSignalVO.path1
-                );
+                this.warningSignalImageList.push(this.warningSignalVO.path1);
               }
               if (this.warningSignalVO.path2) {
-                this.warningSignalImageList.push(
-                  "http://jmqx.jiangmen.cn/material/yjxh/" +
-                    this.warningSignalVO.path2
-                );
+                this.warningSignalImageList.push(this.warningSignalVO.path2);
               }
               if (this.warningSignalVO.path3) {
-                this.warningSignalImageList.push(
-                  "http://jmqx.jiangmen.cn/material/yjxh/" +
-                    this.warningSignalVO.path3
-                );
+                this.warningSignalImageList.push(this.warningSignalVO.path3);
               }
               if (this.warningSignalVO.path4) {
-                this.warningSignalImageList.push(
-                  "http://jmqx.jiangmen.cn/material/yjxh/" +
-                    this.warningSignalVO.path4
-                );
+                this.warningSignalImageList.push(this.warningSignalVO.path4);
               }
               if (this.warningSignalVO.path5) {
-                this.warningSignalImageList.push(
-                  "http://jmqx.jiangmen.cn/material/yjxh/" +
-                    this.warningSignalVO.path5
-                );
+                this.warningSignalImageList.push(this.warningSignalVO.path5);
               }
               if (this.warningSignalVO.path6) {
-                this.warningSignalImageList.push(
-                  "http://jmqx.jiangmen.cn/material/yjxh/" +
-                    this.warningSignalVO.path6
-                );
+                this.warningSignalImageList.push(this.warningSignalVO.path6);
               }
               if (this.warningSignalVO.path7) {
-                this.warningSignalImageList.push(
-                  "http://jmqx.jiangmen.cn/material/yjxh/" +
-                    this.warningSignalVO.path7
-                );
+                this.warningSignalImageList.push(this.warningSignalVO.path7);
               }
               if (this.warningSignalVO.path8) {
-                this.warningSignalImageList.push(
-                  "http://jmqx.jiangmen.cn/material/yjxh/" +
-                    this.warningSignalVO.path8
-                );
+                this.warningSignalImageList.push(this.warningSignalVO.path8);
               }
               if (this.warningSignalVO.path9) {
-                this.warningSignalImageList.push(
-                  "http://jmqx.jiangmen.cn/material/yjxh/" +
-                    this.warningSignalVO.path9
-                );
+                this.warningSignalImageList.push(this.warningSignalVO.path9);
               }
               if (this.warningSignalVO.path10) {
-                this.warningSignalImageList.push(
-                  "http://jmqx.jiangmen.cn/material/yjxh/" +
-                    this.warningSignalVO.path10
-                );
+                this.warningSignalImageList.push(this.warningSignalVO.path10);
               }
             }
           });
@@ -708,17 +680,59 @@ export default {
     },
 
     // 点击预警图片
-    handleWarningSignalImage() {
-      if (
-        this.warningSignalVO &&
-        this.warningSignalVO.yjxhStr &&
-        this.warningSignalVO.yjxhStr.length > 0
-      ) {
-        this.$message({
-          message: this.warningSignalVO.yjxhStr,
-          type: "warning",
-        });
+    handleWarningSignalImage(imageUrl) {
+      var msg = this.warningSignalVO.yjxhStr;
+
+      var color = "";
+      var warnTypeColor = "info";
+      if (imageUrl.indexOf("blue") > -1) {
+        color = "蓝色";
+        warnTypeColor = "info";
+      } else if (imageUrl.indexOf("orange") > -1) {
+        color = "橙色";
+        warnTypeColor = "warning";
+      } else if (imageUrl.indexOf("red") > -1) {
+        color = "红色";
+        warnTypeColor = "error";
+      } else if (imageUrl.indexOf("white") > -1) {
+        color = "白色";
+        warnTypeColor = "info";
+      } else if (imageUrl.indexOf("yellow") > -1) {
+        color = "黄色";
+        warnTypeColor = "warning";
       }
+
+      var warningSignal = "";
+      if (imageUrl.indexOf("typh") > -1) {
+        warningSignal = "台风预警";
+      } else if (imageUrl.indexOf("rst") > -1) {
+        warningSignal = "暴雨预警";
+      } else if (imageUrl.indexOf("htem") > -1) {
+        warningSignal = "高温预警";
+      } else if (imageUrl.indexOf("ltem") > -1) {
+        warningSignal = "寒冷预警";
+      } else if (imageUrl.indexOf("fog") > -1) {
+        warningSignal = "大雾预警";
+      } else if (imageUrl.indexOf("haze") > -1) {
+        warningSignal = "灰霾预警";
+      } else if (imageUrl.indexOf("thun") > -1) {
+        warningSignal = "雷雨大风预警";
+      } else if (imageUrl.indexOf("iceup") > -1) {
+        warningSignal = "道路结冰预警";
+      } else if (imageUrl.indexOf("hail") > -1) {
+        warningSignal = "冰雹预警";
+      } else if (imageUrl.indexOf("fire") > -1) {
+        warningSignal = "森林火警预警";
+      }
+
+      if (color.length > 0 || warningSignal.length > 0) {
+        msg = color + " - " + warningSignal;
+      }
+      this.$message({
+        message: msg,
+        type: warnTypeColor,
+        center: true,
+      });
     },
     //切换地区
     handleChangeDistrict(value) {
