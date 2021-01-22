@@ -162,13 +162,13 @@
     <!-- 未来一周预报 -->
     <div v-loading="isLoading()">
       <el-table :data="getWeekDayForecastCityVO()" stripe style="width: 100%">
-        <el-table-column label="时间" fixed>
+        <el-table-column label="时间" align='center' fixed>
           <template slot-scope="scope">
             <div>{{ scope.row.time }}</div>
             <div>{{ scope.row.week }}</div>
           </template>
         </el-table-column>
-        <el-table-column label="天气图">
+        <el-table-column label="天气图" align='center'>
           <template slot-scope="scope">
             <el-image
               style="width: 30px; height: 30px"
@@ -177,12 +177,16 @@
             ></el-image>
           </template>
         </el-table-column>
-        <el-table-column prop="situation" label="天气"> </el-table-column>
-        <el-table-column prop="temperature" label="温度(°)"> </el-table-column>
-        <el-table-column prop="windDirection" label="风向"> </el-table-column>
-        <el-table-column prop="windSpeed" label="风速"> </el-table-column>
-        <el-table-column prop="humidity" label="相对湿度"> </el-table-column>
-        <el-table-column prop="visibility" label="能见度"> </el-table-column>
+        <el-table-column prop="situation" label="天气" align='center'> </el-table-column>
+        <el-table-column prop="temperature" label="温度" align='center'>
+          <span>{{ scope.row.temperature.split('-')[0] }}</span>~<span>{{ scope.row.temperature.split('-')[1] }}</span>°c
+        </el-table-column>
+        <el-table-column prop="windDirection" label="风向" align='center'> </el-table-column>
+        <el-table-column prop="windSpeed" label="风速" align='center'> </el-table-column>
+        <el-table-column prop="humidity" label="相对湿度" align='center'> 
+          <span>{{ scope.row.humidity.split('-')[0] }}</span>%~<span>{{ scope.row.humidity.split('-')[1] }}</span>%
+        </el-table-column>
+        <el-table-column prop="visibility" label="能见度" align='center'> </el-table-column>
       </el-table>
 
       <el-row class="rowStype">
