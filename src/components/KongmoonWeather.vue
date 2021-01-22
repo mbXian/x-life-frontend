@@ -179,12 +179,16 @@
         </el-table-column>
         <el-table-column prop="situation" label="天气" align='center'> </el-table-column>
         <el-table-column prop="temperature" label="温度" align='center'>
-          <span>{{ scope.row.temperature.split('-')[0] }}</span>~<span>{{ scope.row.temperature.split('-')[1] }}</span>°c
+          <template slot-scope="scope">
+            <span>{{ scope.row.temperature.split('-')[0] }}</span>~<span>{{ scope.row.temperature.split('-')[1] }}</span>°c
+          </template>
         </el-table-column>
         <el-table-column prop="windDirection" label="风向" align='center'> </el-table-column>
         <el-table-column prop="windSpeed" label="风速" align='center'> </el-table-column>
         <el-table-column prop="humidity" label="相对湿度" align='center'> 
-          <span>{{ scope.row.humidity.split('-')[0] }}</span>%~<span>{{ scope.row.humidity.split('-')[1] }}</span>%
+          <template slot-scope="scope">
+            <span>{{ scope.row.humidity.split('-')[0] }}</span>~<span>{{ scope.row.humidity.split('-')[1] }}</span>%
+          </template>
         </el-table-column>
         <el-table-column prop="visibility" label="能见度" align='center'> </el-table-column>
       </el-table>
