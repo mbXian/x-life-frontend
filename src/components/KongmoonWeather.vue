@@ -50,8 +50,7 @@
         </div>
         <!-- 预警信号 -->
         <div
-          class="rowStype"
-          style="text-align: center"
+          style="text-align: center; margin-top: 10px;"
           v-if="warningSignalImageList.length > 0"
         >
           <el-image
