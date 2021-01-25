@@ -40,7 +40,7 @@
         </div>
         <!-- 温度范围 -->
         <div class="temperatureRangeStype">
-          <span :style="temperatureMinColorStype"
+          <span class="underLineStyle" :style="temperatureMinColorStype"
             >{{ getDayForecastCityValue("tmin") }}°</span
           >
           ~
@@ -50,6 +50,7 @@
         </div>
         <!-- 预警信号 -->
         <div
+          class="rowStype"
           style="text-align: center"
           v-if="warningSignalImageList.length > 0"
         >
@@ -468,7 +469,7 @@ export default {
         color: "#000",
       },
       temperatureMinColorStype: {
-        color: "#000",
+        
       },
       temperatureMaxColorStype: {
         color: "#000",
@@ -498,12 +499,15 @@ export default {
       this.temperatureColorStype.color = this.calTemperatureColor(
         this.realTimeDataVO.temperature
       );
-      this.temperatureMinColorStype.color = this.calTemperatureColor(
+      var bottomStyle = '5px solid ';
+      var temperatureMinBottomStyle = bottomStyle + this.calTemperatureColor(
         this.getDayForecastCityValue("tmin")
       );
-      this.temperatureMaxColorStype.color = this.calTemperatureColor(
+      var temperatureMaxBottomStyle = bottomStyle + this.calTemperatureColor(
         this.getDayForecastCityValue("tmax")
       );
+      this.temperatureMinColorStype = {'border-bottom': temperatureMinBottomStyle} 
+      this.temperatureMaxColorStype = {'border-bottom': temperatureMaxBottomStyle} 
     },
 
     //计算温度转颜色值
@@ -841,5 +845,8 @@ export default {
 }
 .indexKeyStype {
   font-weight: bold;
+}
+.underLineStyle {
+  border-bottom: 5px solid #0081EF;
 }
 </style>
