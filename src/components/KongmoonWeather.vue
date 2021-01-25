@@ -508,7 +508,6 @@ export default {
 
     //计算温度转颜色值
     calTemperatureColor(temperature) {
-      console.log("t = " + temperature);
       var b = 0;
       var g = 0;
       var r = 0;
@@ -530,15 +529,17 @@ export default {
 
     // 获取今日天气预报图标
     getDayForecastCityIcon() {
-      const iconUrl =
-        this.weatherImageIp + this.getDayForecastCityValue("icon");
-      return iconUrl;
+      const iconUrl = this.getDayForecastCityValue("icon");
+      if (iconUrl && iconUrl.length > 0) {
+        return this.weatherImageIp + iconUrl;
+      }
+        
+      return null;
     },
 
     // 获取相应的预报值
     getDayForecastCityValue(key) {
       const dayForecastCityVO = this.getDayForecastCityVO();
-      console.log("dayForecastCityVO = " + JSON.stringify(dayForecastCityVO));
       if (dayForecastCityVO) {
         return dayForecastCityVO[key];
       }
