@@ -775,12 +775,14 @@ export default {
   font-weight: bold;
   font-size: 60px;
   color: rgb(0, 0, 0);
+  font-family: Arial, Helvetica, sans-serif;
 }
 .temperatureRangeStype {
   text-align: center;
   font-weight: bold;
   font-size: 18px;
   color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .rowStype {
   margin-top: 5px;
