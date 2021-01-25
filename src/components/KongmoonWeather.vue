@@ -40,9 +40,13 @@
         </div>
         <!-- 温度范围 -->
         <div class="temperatureRangeStype">
-          {{ getDayForecastCityValue("tmin") }}°~{{
-            getDayForecastCityValue("tmax")
-          }}°
+          <span :style="temperatureMinColorStype"
+            >{{ getDayForecastCityValue("tmin") }}°</span
+          >
+          ~
+          <span :style="temperatureMaxColorStype"
+            >{{ getDayForecastCityValue("tmax") }}°</span
+          >
         </div>
         <!-- 预警信号 -->
         <div
@@ -162,13 +166,13 @@
     <!-- 未来一周预报 -->
     <div v-loading="isLoading()">
       <el-table :data="getWeekDayForecastCityVO()" stripe style="width: 100%">
-        <el-table-column label="时间" align='center' fixed>
+        <el-table-column label="时间" align="center" fixed>
           <template slot-scope="scope">
             <div>{{ scope.row.time }}</div>
             <div>{{ scope.row.week }}</div>
           </template>
         </el-table-column>
-        <el-table-column label="天气图" align='center'>
+        <el-table-column label="天气图" align="center">
           <template slot-scope="scope">
             <el-image
               style="width: 30px; height: 30px"
@@ -177,20 +181,28 @@
             ></el-image>
           </template>
         </el-table-column>
-        <el-table-column prop="situation" label="天气" align='center'> </el-table-column>
-        <el-table-column prop="temperature" label="温度" align='center'>
+        <el-table-column prop="situation" label="天气" align="center">
+        </el-table-column>
+        <el-table-column prop="temperature" label="温度" align="center">
           <template slot-scope="scope">
-            <span>{{ scope.row.temperature.split('-')[0] }}</span>~<span>{{ scope.row.temperature.split('-')[1] }}</span>°c
+            <span>{{ scope.row.temperature.split("-")[0] }}</span
+            >~<span>{{ scope.row.temperature.split("-")[1] }}</span
+            >°c
           </template>
         </el-table-column>
-        <el-table-column prop="windDirection" label="风向" align='center'> </el-table-column>
-        <el-table-column prop="windSpeed" label="风速" align='center'> </el-table-column>
-        <el-table-column prop="humidity" label="相对湿度" align='center'> 
+        <el-table-column prop="windDirection" label="风向" align="center">
+        </el-table-column>
+        <el-table-column prop="windSpeed" label="风速" align="center">
+        </el-table-column>
+        <el-table-column prop="humidity" label="相对湿度" align="center">
           <template slot-scope="scope">
-            <span>{{ scope.row.humidity.split('-')[0] }}</span>~<span>{{ scope.row.humidity.split('-')[1] }}</span>%
+            <span>{{ scope.row.humidity.split("-")[0] }}</span
+            >~<span>{{ scope.row.humidity.split("-")[1] }}</span
+            >%
           </template>
         </el-table-column>
-        <el-table-column prop="visibility" label="能见度" align='center'> </el-table-column>
+        <el-table-column prop="visibility" label="能见度" align="center">
+        </el-table-column>
       </el-table>
 
       <el-row class="rowStype">
@@ -455,6 +467,12 @@ export default {
       temperatureColorStype: {
         color: "#000",
       },
+      temperatureMinColorStype: {
+        color: "#000",
+      },
+      temperatureMaxColorStype: {
+        color: "#000",
+      },
       //日期
       dateTimeString: "",
     };
@@ -477,7 +495,20 @@ export default {
     },
     // 更新温度颜色
     updateTemperatureColor() {
-      let temperature = this.realTimeDataVO.temperature;
+      this.temperatureColorStype.color = this.calTemperatureColor(
+        this.realTimeDataVO.temperature
+      );
+      this.temperatureMinColorStype.color = this.calTemperatureColor(
+        this.getDayForecastCityValue("tmin")
+      );
+      this.temperatureMaxColorStype.color = this.calTemperatureColor(
+        this.getDayForecastCityValue("tmax")
+      );
+    },
+
+    //计算温度转颜色值
+    calTemperatureColor(temperature) {
+      console.log("t = " + temperature);
       var b = 0;
       var g = 0;
       var r = 0;
@@ -494,7 +525,7 @@ export default {
         g = 256 - (256 / 20) * (temperature - 20);
         r = 256 - (256 / 20) * (40 - temperature);
       }
-      this.temperatureColorStype.color = convertRgbToHex(r, g, b);
+      return convertRgbToHex(r, g, b);
     },
 
     // 获取今日天气预报图标
@@ -507,6 +538,7 @@ export default {
     // 获取相应的预报值
     getDayForecastCityValue(key) {
       const dayForecastCityVO = this.getDayForecastCityVO();
+      console.log("dayForecastCityVO = " + JSON.stringify(dayForecastCityVO));
       if (dayForecastCityVO) {
         return dayForecastCityVO[key];
       }
@@ -619,6 +651,8 @@ export default {
         (response) => {
           this.dayForecastVO = response.data.data;
           this.dataCount = this.dataCount + 1;
+          // 更新温度颜色
+          this.updateTemperatureColor();
         },
         (response) => {
           this.$message.error("今天天气预报请求失败！");
