@@ -41,11 +41,11 @@
         <!-- 温度范围 -->
         <div class="temperatureRangeStype">
           <span class="underLineStyle" :style="temperatureMinColorStype"
-            >{{ getDayForecastCityValue("tmin") }}°</span
+            >{{ getDayForecastCityValue("tmin") }}°c</span
           >
           ~
           <span :style="temperatureMaxColorStype"
-            >{{ getDayForecastCityValue("tmax") }}°</span
+            >{{ getDayForecastCityValue("tmax") }}°c</span
           >
         </div>
         <!-- 预警信号 -->
@@ -468,7 +468,7 @@ export default {
         color: "#000",
       },
       temperatureMinColorStype: {
-        
+
       },
       temperatureMaxColorStype: {
         color: "#000",
@@ -505,8 +505,8 @@ export default {
       var temperatureMaxBottomStyle = bottomStyle + this.calTemperatureColor(
         this.getDayForecastCityValue("tmax")
       );
-      this.temperatureMinColorStype = {'border-bottom': temperatureMinBottomStyle} 
-      this.temperatureMaxColorStype = {'border-bottom': temperatureMaxBottomStyle} 
+      this.temperatureMinColorStype = {'border-bottom': temperatureMinBottomStyle}
+      this.temperatureMaxColorStype = {'border-bottom': temperatureMaxBottomStyle}
     },
 
     //计算温度转颜色值
@@ -536,7 +536,7 @@ export default {
       if (iconUrl && iconUrl.length > 0) {
         return this.weatherImageIp + iconUrl;
       }
-        
+
       return null;
     },
 
