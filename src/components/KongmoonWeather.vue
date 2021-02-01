@@ -399,7 +399,7 @@
 
     <div style="text-align: center">
       <span>
-        <span style="color: gray">version: v-1.0</span>
+        <span style="color: gray">version: v-1.1</span>
       </span>
     </div>
   </div>
@@ -523,10 +523,6 @@ export default {
       this.temperatureMaxColorStype = {
         "border-bottom": temperatureMaxBottomStyle,
       };
-      console.log(
-        "this.temperatureMinColorStype = " +
-          JSON.stringify(this.temperatureMinColorStype)
-      );
     },
 
     //计算温度转颜色值
