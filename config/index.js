@@ -14,7 +14,7 @@ module.exports = {
       //跨域处理
       '/api': {
         // target: 'http://localhost:8091',//设置你调用的接口域名和端口号
-        target: 'http://111.229.74.28:8091',//设置你调用的接口域名和端口号
+        target: 'http://47.110.93.171:8091',//设置你调用的接口域名和端口号
         changeOrigin: true,//允许跨域
         pathRewrite: {
           '^/api': '/' //这个是定义要访问的路径，名字随便写
