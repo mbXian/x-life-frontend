@@ -3,7 +3,7 @@
     <el-button type="primary" @click="goBack">← 返回</el-button>
 
     <div>
-        <div>
+        <div  class="contentItemStype">
           <el-table :data="moneyRecordList" stripe style="width: 100%">
 
             <el-table-column prop="categoryName" label="类别" align="center">
@@ -94,5 +94,7 @@ export default {
 
 
 <style>
-
+.contentItemStype {
+  margin-top: 10px;
+}
 </style>

@@ -4,7 +4,7 @@
 
     <div>
       <div>
-        <div>开始日期：</div>
+        <div class="contentItemStype">开始日期：</div>
         <div class="block">
           <el-date-picker
             v-model="requestRankingListByCategoryStartDate"
@@ -14,7 +14,7 @@
             placeholder="选择日期">
           </el-date-picker>
         </div>
-        <div>结束日期：</div>
+        <div class="contentItemStype">结束日期：</div>
         <div class="block">
           <el-date-picker
             v-model="requestRankingListByCategoryEndDate"
@@ -23,10 +23,11 @@
             placeholder="选择日期">
           </el-date-picker>
         </div>  
-        <div>
+        <div class="contentItemStype">
           <el-button type="primary" @click="requestRankingListByCategory">排行榜查询</el-button>
+          <el-button type="success" @click="add">记一笔</el-button>
         </div>
-        <div>
+        <div class="contentItemStype">
           <el-table :data="priceRankingList" stripe style="width: 100%">
 
             <el-table-column prop="rank" label="排行" align="center">
@@ -126,11 +127,22 @@ export default {
       };
       this.$router.push({path: '/moneyRecordListByCategory', query: param});
     },
+
+    // 新增
+    add() {
+      let param = {
+        userMobile: "18824140606"
+      };
+      this.$router.push({path: '/moneyRecordAdd', query: param});
+    },
+
   },
 };
 </script>
 
 
 <style>
-
+.contentItemStype {
+  margin-top: 10px;
+}
 </style>
