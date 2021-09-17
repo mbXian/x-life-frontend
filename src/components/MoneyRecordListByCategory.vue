@@ -9,7 +9,7 @@
             <el-table-column prop="categoryName" label="类别" align="center">
             </el-table-column>
 
-            <el-table-column prop="changeTime" label="消费时间" align="center" width="90px">
+            <el-table-column prop="changeTime" label="消费时间" align="center" width="95px">
             </el-table-column>
 
             <el-table-column prop="price" label="消费金额">

@@ -4,10 +4,10 @@
       功能列表
     </div>
     <div class="contentItemStype">
-      <el-button type="primary" @click="goToWeather">主要按钮</el-button>
+      <el-button type="primary" @click="goToWeather">江门天气</el-button>
     </div>
     <div class="contentItemStype">
-      <el-button type="primary" @click="goToMoneyRecord">主要按钮</el-button>
+      <el-button type="primary" @click="goToMoneyRecord">记账工具</el-button>
     </div>
   </div>
 </template>
