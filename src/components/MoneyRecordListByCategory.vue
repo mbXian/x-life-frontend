@@ -9,13 +9,13 @@
             <el-table-column prop="categoryName" label="类别" align="center">
             </el-table-column>
 
-            <el-table-column prop="changeTime" label="消费时间" align="center">
+            <el-table-column prop="changeTime" label="消费时间" align="center" width="90px">
             </el-table-column>
 
-            <el-table-column prop="price" label="消费（元）">
+            <el-table-column prop="price" label="消费金额">
             </el-table-column>
 
-            <el-table-column prop="channelName" label="支付渠道">
+            <el-table-column prop="channelName" label="支付渠道"  align="center">
             </el-table-column>
 
             <el-table-column prop="tagNames" label="标签">
