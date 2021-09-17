@@ -115,6 +115,17 @@ export default {
         }
       );        
     },
+
+    // 查看详情
+    checkDetail(categoryId) {
+      let param = {
+        startDate: this.requestRankingListByCategoryStartDate,//开始时间
+        endDate: this.requestRankingListByCategoryEndDate,//结束时间
+        userMobile: "18824140606",
+        parentCategoryId: categoryId
+      };
+      this.$router.push({path: '/moneyRecordListByCategory', query: param});
+    },
   },
 };
 </script>

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import KongmoonWeather from '@/components/KongmoonWeather'
 import MoneyRecord from '@/components/MoneyRecord'
+import MoneyRecordListByCategory from '@/components/MoneyRecordListByCategory'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/moneyRecord',
       name: 'MoneyRecord',
       component: MoneyRecord
+    },
+    {
+      path: '/moneyRecordListByCategory',
+      name: 'MoneyRecordListByCategory',
+      component: MoneyRecordListByCategory
     },
   ]
 })
