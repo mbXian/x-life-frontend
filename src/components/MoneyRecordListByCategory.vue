@@ -15,18 +15,14 @@
             <el-table-column prop="price" label="消费金额" align="right">
             </el-table-column>
 
-            <el-table-column prop="channelName" label="支付渠道"  align="center">
+            <el-table-column prop="channelName" label="支付渠道" align="center">
             </el-table-column>
 
-            <el-table-column label="标签">
+            <el-table-column label="标签" align="center">
               <template slot-scope="scope">
-                  <el-tag
-                    v-for="item in scope.row.tagNameList"
-                    :key="item"
-                    :type="''"
-                    effect="plain">
-                    {{ item }}
-                  </el-tag>
+                  <div class="tagStype" v-for="tagName in scope.row.tagNameList" :key="tagName">
+                    {{tagName}}
+                  </div>
               </template>
             </el-table-column>
 
@@ -66,7 +62,6 @@ export default {
 
     // 初始化数据
     initDate() {
-      console.log(this.$route.query);
       this.requestRankingListByCategory();
     },
 
@@ -115,5 +110,17 @@ export default {
 <style>
 .contentItemStype {
   margin-top: 10px;
+}
+.tagStype {
+  height: 20px;
+  width: 42px;
+  font-size: 10px;
+  color: rgb(96, 173, 221);
+  border: 1px solid rgb(142, 208, 235);
+  background: #dff4f7;
+  border-radius: 2px;
+  text-align: center;
+  margin-bottom: 1px;
+  text-align: center;
 }
 </style>

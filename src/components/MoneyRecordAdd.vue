@@ -4,7 +4,7 @@
 
     <div>
       <div>
-        <div class="contentItemStype">账户变动时间：</div>
+        <div class="contentItemStype"><span class="formNotNullStype">*</span>账户变动时间：</div>
         <div class="block">
           <el-date-picker
             v-model="changeTime"
@@ -16,14 +16,14 @@
       </div>
 
       <div>
-        <div class="contentItemStype">价格：</div>
+        <div class="contentItemStype"><span class="formNotNullStype">*</span>价格：</div>
         <div>
           <el-input-number v-model="price" :precision="2" :step="0.1" :min="0"></el-input-number>
         </div>        
       </div>
 
       <div>
-        <div class="contentItemStype">类型：</div>
+        <div class="contentItemStype"><span class="formNotNullStype">*</span>类型：</div>
         <div>
           <el-select v-model="type" placeholder="请选择" @change="onTypeChange">
             <el-option
@@ -37,7 +37,7 @@
       </div>
 
       <div>
-        <div class="contentItemStype">渠道：</div>
+        <div class="contentItemStype"><span class="formNotNullStype">*</span>渠道：</div>
         <div>
           <el-select v-model="channelId" placeholder="请选择">
             <el-option
@@ -51,7 +51,7 @@
       </div> 
 
       <div class="block">
-        <div class="contentItemStype">类别：</div>
+        <div class="contentItemStype"><span class="formNotNullStype">*</span>类别：</div>
         <el-cascader
           v-model="categoryIdList"
           :options="categoryList"
@@ -260,5 +260,8 @@ export default {
 <style>
 .contentItemStype {
   margin-top: 10px;
+}
+.formNotNullStype {
+  color: red;
 }
 </style>
