@@ -389,7 +389,7 @@
         ></el-image>
       </div>
 
-      <div style="text-align: center">
+      <!-- <div style="text-align: center">
         <span>
           <span style="color: darkturquoise">技术支持：@兵</span>
           <el-image
@@ -405,7 +405,7 @@
         <span>
           <span style="color: gray">version: v-1.1</span>
         </span>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
