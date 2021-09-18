@@ -4,6 +4,11 @@
 
     <div>
       <div>
+        <div class="inoutStatusStype">
+          <span class="inoutStatusTitleStype">收入:</span><span class="inoutStatusContentStype">{{moneyInOutVO.incomeTotal}}</span>
+          <span class="inoutStatusTitleStype">支出:</span><span class="inoutStatusContentStype">{{moneyInOutVO.expenseTotal}}</span>
+          <span class="inoutStatusTitleStype">盈余:</span><span class="inoutStatusContentStype">{{moneyInOutVO.surplusTotal}}</span>
+        </div>
         <div class="contentItemStype">开始日期：</div>
         <div class="block">
           <el-date-picker
@@ -64,6 +69,8 @@ export default {
       // 排行版的日期范围
       requestRankingListByCategoryStartDate: '',
       requestRankingListByCategoryEndDate: '',
+      // 收入、支出总额
+      moneyInOutVO: {},
     };
   },
 
@@ -96,11 +103,11 @@ export default {
       }
 
       this.requestRankingListByCategory();
+      this.inoutStatus();
     },
 
     // 查询每个一级分类的总消费排行榜
     requestRankingListByCategory() {
-      console.log(this.requestRankingListByCategoryStartDate + ', ' + this.requestRankingListByCategoryEndDate);
       let params = {
         startDate: this.requestRankingListByCategoryStartDate,//开始时间
         endDate: this.requestRankingListByCategoryEndDate,//结束时间
@@ -116,6 +123,24 @@ export default {
         }
       );        
     },
+
+    // 查询收入、支出总额
+    inoutStatus() {
+      let params = {
+        startDate: this.requestRankingListByCategoryStartDate,//开始时间
+        endDate: this.requestRankingListByCategoryEndDate,//结束时间
+        userMobile: "18824140606"
+      };
+      axios.post("api/moneyRecord/inoutStatus", params).then(
+        (response) => {
+          this.moneyInOutVO = response.data.data;
+          console.log(JSON.stringify(this.moneyInOutVO));
+        },
+        (response) => {
+          this.$message.error("查询收入、支出总额请求失败！");
+        }
+      );        
+    },    
 
     // 查看详情
     checkDetail(categoryId) {
@@ -144,5 +169,21 @@ export default {
 <style>
 .contentItemStype {
   margin-top: 10px;
+}
+.inoutStatusStype {
+  border: 1px solid rgb(142, 208, 235);
+  background: #dff4f7;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 10px;
+}
+.inoutStatusTitleStype {
+  color: black;
+  font-weight: bold;
+}
+.inoutStatusContentStype {
+  color: gray;
+  font-size: 15px;
+  margin-right: 3px;
 }
 </style>

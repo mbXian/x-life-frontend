@@ -119,7 +119,6 @@ export default {
   border: 1px solid rgb(142, 208, 235);
   background: #dff4f7;
   border-radius: 2px;
-  text-align: center;
   margin-bottom: 1px;
   text-align: center;
 }
