@@ -18,9 +18,23 @@
             <el-table-column prop="channelName" label="支付渠道"  align="center">
             </el-table-column>
 
-            <el-table-column prop="tagNames" label="标签">
+            <el-table-column label="标签">
+              <template slot-scope="scope">
+                  <el-tag
+                    v-for="item in scope.row.tagNameList"
+                    :key="item"
+                    :type="''"
+                    effect="plain">
+                    {{ item }}
+                  </el-tag>
+              </template>
+            </el-table-column>
 
-            </el-table-column>           
+            <el-table-column label="备注" align="center">
+              <template slot-scope="scope">
+                <span style="font-size: 7px;">{{scope.row.remark}}</span>
+              </template>
+            </el-table-column>             
             
           </el-table>          
         </div>      
@@ -79,7 +93,6 @@ export default {
                 tagNames = tagNames + tagName
               });
               element.tagNames = tagNames;
-              console.log(tagNames);
             }
           });
         },
@@ -88,6 +101,12 @@ export default {
         }
       );        
     },
+
+    // 查看备注
+    showRemark(remark) {
+
+    },
+    
   },
 };
 </script>
