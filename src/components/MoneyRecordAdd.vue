@@ -94,6 +94,7 @@ export default {
   name: "MoneyRecordAdd",
   data() {
     return {
+      userMobile: null,
       changeTime: new Date(),
       price:0.00,
       remark: null,
@@ -132,6 +133,8 @@ export default {
 
     // 初始化数据
     initDate() {
+      this.userMobile = this.$route.query.userMobile;
+
       this.requestTagList();
       this.requestCategoryList();
       this.requestChannelList();
@@ -140,7 +143,7 @@ export default {
     // 请求标签列表
     requestTagList() {
       let params = {
-        userMobile: "18824140606"
+        userMobile: this.userMobile
       }
       axios.post("api/moneyTag/findUserTagList", params).then(
         (response) => {
@@ -161,7 +164,6 @@ export default {
       axios.post("api/moneyCategory/tree", params).then(
         (response) => {
           this.categoryList = response.data.data;
-          console.log(JSON.stringify(this.categoryList));
         },
         (response) => {
           this.$message.error("类别列表请求失败！");
@@ -177,7 +179,6 @@ export default {
       axios.post("api/moneyChannel/listByType", params).then(
         (response) => {
           this.channelList = response.data.data;
-          console.log(JSON.stringify(this.channelList));
         },
         (response) => {
           this.$message.error("渠道列表请求失败！");
@@ -225,7 +226,7 @@ export default {
           }
         }
         let params = {
-          userMobile: "18824140606",
+          userMobile: this.userMobile,
           price: this.price,
           changeTime: this.dateFormat(this.changeTime),
           categoryId: categoryIdLast,

@@ -47,6 +47,7 @@ export default {
     return {
       // 消费list
       moneyRecordList: [],
+      userMobile: null,
     };
   },
 
@@ -62,6 +63,7 @@ export default {
 
     // 初始化数据
     initDate() {
+      this.userMobile = this.$route.query.userMobile;
       this.requestRankingListByCategory();
     },
 

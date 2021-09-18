@@ -29,7 +29,27 @@
       <span>
         <span style="color: gray">version: v1.2.0</span>
       </span>
-    </div>    
+    </div>
+
+    <el-dialog title="登录" :visible.sync="dialogLoginVisible" width="90%">
+      <el-form>
+
+        <el-form-item label="手机号">
+          <el-input v-model="userMobile" placeholder="请输入手机号"></el-input>
+        </el-form-item>
+
+        <el-form-item label="密码">
+          <el-input v-model="password" placeholder="请输入密码" show-password></el-input>
+        </el-form-item>
+
+      </el-form>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogLoginVisible = false">取 消</el-button>
+        <el-button type="primary" @click="onLogin">确 定</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -40,7 +60,12 @@ export default {
   name: "Home",
   data() {
     return {
-      
+      // 登录弹窗显示
+      dialogLoginVisible: false,
+      formLabelWidth: '120px',
+      userMobile: null,
+      password: null,
+      userLoginVO: {},
     };
   },
 
@@ -53,10 +78,50 @@ export default {
     goToWeather() {
       this.$router.push('/weather');
     },
+
     // 跳转到记账
     goToMoneyRecord() {
-      this.$router.push('/moneyRecord');
-    }
+      if (this.userMobile != null && this.userMobile != '') {
+        let param = {
+          userMobile: this.userMobile
+        };
+        this.$router.push({path:'/moneyRecord', query: param}); 
+      } else {
+        this.dialogLoginVisible = true;
+      }
+    },
+
+    // 登录
+    onLogin() {
+      if (this.userMobile == null || this.userMobile.lenght == 0) {
+        this.$message.error("请输入手机号！");
+        return
+      }
+      if (this.password == null || this.password.lenght == 0) {
+        this.$message.error("请输入密码！");
+        return
+      }
+      let params = {
+        mobile: this.userMobile,
+        password: this.password
+      };
+
+      axios.post("api/user/login", params).then(
+        (response) => {
+          this.userLoginVO = response.data.data;
+          if (this.userLoginVO) {
+            this.userMobile = this.userLoginVO.mobile;
+            this.dialogLoginVisible = false;
+            this.goToMoneyRecord();
+          } else {
+            this.$message.error("登录失败！");  
+          }
+        },
+        (response) => {
+          this.$message.error("登录请求失败！");
+        }
+      );   
+    },
   },
 };
 </script>

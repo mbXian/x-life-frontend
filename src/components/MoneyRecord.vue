@@ -71,6 +71,7 @@ export default {
       requestRankingListByCategoryEndDate: '',
       // 收入、支出总额
       moneyInOutVO: {},
+      userMobile: null,
     };
   },
 
@@ -86,6 +87,8 @@ export default {
 
     // 初始化数据
     initDate() {
+      this.userMobile = this.$route.query.userMobile;
+
       // 排行版的日期范围，默认本月
       var now = new Date();
       var y = now.getFullYear();
@@ -111,12 +114,11 @@ export default {
       let params = {
         startDate: this.requestRankingListByCategoryStartDate,//开始时间
         endDate: this.requestRankingListByCategoryEndDate,//结束时间
-        userMobile: "18824140606"
+        userMobile: this.userMobile
       };
       axios.post("api/moneyRecord/priceRankingListByCategory", params).then(
         (response) => {
           this.priceRankingList = response.data.data;
-          console.log(JSON.stringify(this.priceRankingList));
         },
         (response) => {
           this.$message.error("查询每个一级分类的总消费排行榜请求失败！");
@@ -129,12 +131,11 @@ export default {
       let params = {
         startDate: this.requestRankingListByCategoryStartDate,//开始时间
         endDate: this.requestRankingListByCategoryEndDate,//结束时间
-        userMobile: "18824140606"
+        userMobile: this.userMobile
       };
       axios.post("api/moneyRecord/inoutStatus", params).then(
         (response) => {
           this.moneyInOutVO = response.data.data;
-          console.log(JSON.stringify(this.moneyInOutVO));
         },
         (response) => {
           this.$message.error("查询收入、支出总额请求失败！");
@@ -147,7 +148,7 @@ export default {
       let param = {
         startDate: this.requestRankingListByCategoryStartDate,//开始时间
         endDate: this.requestRankingListByCategoryEndDate,//结束时间
-        userMobile: "18824140606",
+        userMobile: this.userMobile,
         parentCategoryId: categoryId
       };
       this.$router.push({path: '/moneyRecordListByCategory', query: param});
@@ -156,7 +157,7 @@ export default {
     // 新增
     add() {
       let param = {
-        userMobile: "18824140606"
+        userMobile: this.userMobile
       };
       this.$router.push({path: '/moneyRecordAdd', query: param});
     },
