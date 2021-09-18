@@ -36,7 +36,7 @@
             <el-table-column prop="categoryName" label="类别" align="center">
             </el-table-column>
 
-            <el-table-column prop="price" label="消费金额">
+            <el-table-column prop="price" label="消费金额" align="right">
             </el-table-column>
 
             <el-table-column label="操作" align="center">

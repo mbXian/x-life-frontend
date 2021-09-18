@@ -9,6 +9,27 @@
     <div class="contentItemStype">
       <el-button type="primary" @click="goToMoneyRecord">记账工具</el-button>
     </div>
+
+    <!-- 线 -->
+    <div class="dashedStype"></div>    
+
+    <div style="text-align: center">
+      <span>
+        <span style="color: darkturquoise">技术支持：@兵</span>
+        <el-image
+          class="valueIconStype"
+          style="border-radius: 50%"
+          src="https://gitee.com/pic-project/pic-it-work-001/raw/master/photoshop/portrait.png"
+          fit="fill"
+        ></el-image>
+      </span>
+    </div>
+
+    <div style="text-align: center">
+      <span>
+        <span style="color: gray">version: v-1.1</span>
+      </span>
+    </div>    
   </div>
 </template>
 
@@ -49,5 +70,10 @@ export default {
 }
 .contentItemStype {
   margin-top: 10px;
+}
+.dashedStype {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px dashed darkgray;
 }
 </style>

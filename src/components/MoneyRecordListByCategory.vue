@@ -12,7 +12,7 @@
             <el-table-column prop="changeTime" label="消费时间" align="center" width="95px">
             </el-table-column>
 
-            <el-table-column prop="price" label="消费金额">
+            <el-table-column prop="price" label="消费金额" align="right">
             </el-table-column>
 
             <el-table-column prop="channelName" label="支付渠道"  align="center">
