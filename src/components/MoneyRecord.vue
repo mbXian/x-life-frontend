@@ -24,7 +24,7 @@
           </el-date-picker>
         </div>  
         <div class="contentItemStype">
-          <el-button type="primary" @click="requestRankingListByCategory">排行榜查询</el-button>
+          <el-button type="primary" @click="requestRankingListByCategory">消费榜查询</el-button>
           <el-button type="success" @click="add">记一笔</el-button>
         </div>
         <div class="contentItemStype">
