@@ -76,4 +76,8 @@ export default {
   margin-bottom: 10px;
   border: 1px dashed darkgray;
 }
+.valueIconStype {
+  width: 30px;
+  height: 30px;
+}
 </style>
