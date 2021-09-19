@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       userMobile: null,
-      changeTime: new Date(),
+      changeTime: this.dateFormat(new Date()),
       price:0.00,
       remark: null,
       tagList: [],
@@ -148,7 +148,6 @@ export default {
       axios.post("api/moneyTag/findUserTagList", params).then(
         (response) => {
           this.tagList = response.data.data;
-          console.log(JSON.stringify(this.tagList));
         },
         (response) => {
           this.$message.error("查询用户标签请求失败！");
@@ -228,7 +227,7 @@ export default {
         let params = {
           userMobile: this.userMobile,
           price: this.price,
-          changeTime: this.dateFormat(this.changeTime),
+          changeTime: this.changeTime,
           categoryId: categoryIdLast,
           channelId: this.channelId,
           tagIds: tagIds,
