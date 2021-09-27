@@ -9,6 +9,9 @@
     <div class="contentItemStype">
       <el-button type="primary" @click="goToMoneyRecord">记账工具</el-button>
     </div>
+    <!-- <div class="contentItemStype">
+      <el-button type="primary" @click="test">test</el-button>
+    </div> -->
 
     <!-- 线 -->
     <div class="dashedStype"></div>    
@@ -55,6 +58,7 @@
 
 <script>
 import axios from "axios";
+import storage from 'store'
 
 export default {
   name: "Home",
@@ -122,6 +126,13 @@ export default {
         }
       );   
     },
+
+    // test() {
+    //   storage.set('user', { name:'Ben', mobile: '18824140606' });
+    //   console.log(JSON.stringify(storage.get('user')));
+    //   storage.remove('user')
+    //   console.log(JSON.stringify(storage.get('user')));
+    // }
   },
 };
 </script>
