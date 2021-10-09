@@ -856,6 +856,7 @@ export default {
 
 .rowStype {
   margin-top: 5px;
+  text-align: left;
 }
 
 .remarkStype {
