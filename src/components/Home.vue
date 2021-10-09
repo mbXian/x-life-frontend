@@ -30,7 +30,7 @@
 
     <div style="text-align: center">
       <span>
-        <span style="color: gray">version: v1.2.5</span>
+        <span style="color: gray">version: v1.2.7</span>
       </span>
     </div>
 
