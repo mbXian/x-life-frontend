@@ -74,7 +74,9 @@ export default {
   },
 
   created() {
-    
+    storage.set('client_id', 'ben_client');
+    storage.set('client_secret', 'ben_secret');
+    storage.remove('userLoginVO')
   },
 
   methods: {
@@ -105,16 +107,14 @@ export default {
         this.$message.error("请输入密码！");
         return
       }
-      let params = {
-        mobile: this.userMobile,
-        password: this.password
-      };
 
-      axios.post("api/user/login", params).then(
+      let urlString = "api/oauth/token?username=" + this.userMobile + "&password=" + this.password + "&grant_type=password&client_id=" + storage.get('client_id') + "&client_secret=" + storage.get('client_secret');
+      axios.post(urlString).then(
         (response) => {
-          this.userLoginVO = response.data.data;
+          this.userLoginVO = response.data;
           if (this.userLoginVO) {
-            this.userMobile = this.userLoginVO.mobile;
+            // 存储登录信息
+            storage.set('userLoginVO', this.userLoginVO);
             this.dialogLoginVisible = false;
             this.goToMoneyRecord();
           } else {

@@ -21,3 +21,20 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+import storage from 'store'
+
+// 首先对拦截器的请求进行设置，并在方法中return config，此处为固定格式
+axios.interceptors.request.use(config => {
+  // 表示在配置中的设置头消息的字段Authorization为从本地获取的token值
+  if (storage.get('userLoginVO')) {
+    let userLoginVO = storage.get('userLoginVO');
+    if (userLoginVO.access_token) {
+        config.headers.Authorization = 'Bearer ' + userLoginVO.access_token;
+    }
+  }
+  return config
+})
+
+Vue.prototype.$http = axios;
+
