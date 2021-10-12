@@ -18,7 +18,7 @@
       <div>
         <div class="contentItemStype"><span class="formNotNullStype">*</span>价格：</div>
         <div>
-          <el-input-number v-model="price" :precision="2" :step="0.1" :min="0"></el-input-number>
+          <el-input placeholder="请输入价格" style="width: 200px;" v-model="price" clearable></el-input>
         </div>        
       </div>
 
@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       changeTime: this.dateFormat(new Date()),
-      price:0.00,
+      price: null,
       remark: null,
       tagList: [],
       // 所选的标签
@@ -193,10 +193,20 @@ export default {
       ':' + (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes()) + ':' + (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds())
     },
 
+    // 校验保留两位小数金额
+    isMoney(price) {
+      var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/
+      if (reg.test(price)) {
+        return true
+      } else {
+        return false
+      }
+    },
+
     // 保存
     save() {
-        if (this.price === 0) {
-          this.$message.error("请先选择价格！");
+        if (!this.isMoney(this.price)) {
+          this.$message.error("请先输入正确的价格！");
           return
         }
         if (this.categoryIdList == null || this.categoryIdList.lenght == 0) {
