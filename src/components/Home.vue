@@ -76,7 +76,6 @@ export default {
   created() {
     storage.set('client_id', 'ben_client');
     storage.set('client_secret', 'ben_secret');
-    storage.remove('userLoginVO')
   },
 
   methods: {
