@@ -140,7 +140,7 @@ export default {
 
     // 请求标签列表
     requestTagList() {
-      axios.post("api/moneyTag/findUserTagList", null).then(
+      axios.post("api/moneyTag/findUserTagList", {}).then(
         (response) => {
           this.tagList = response.data.data;
         },
