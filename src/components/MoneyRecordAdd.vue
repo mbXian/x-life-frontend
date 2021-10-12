@@ -76,7 +76,7 @@
       <div>
         <div class="contentItemStype">备注：</div>
         <div>
-          <el-input v-model="remark" placeholder="备注"></el-input>
+          <el-input v-model="remark" placeholder="备注" clearable></el-input>
         </div>        
       </div>      
 
