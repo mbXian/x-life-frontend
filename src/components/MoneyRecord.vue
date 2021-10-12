@@ -71,7 +71,6 @@ export default {
       requestRankingListByCategoryEndDate: '',
       // 收入、支出总额
       moneyInOutVO: {},
-      userMobile: null,
     };
   },
 
@@ -87,7 +86,6 @@ export default {
 
     // 初始化数据
     initDate() {
-      this.userMobile = this.$route.query.userMobile;
 
       // 排行版的日期范围，默认本月
       var now = new Date();
@@ -114,7 +112,6 @@ export default {
       let params = {
         startDate: this.requestRankingListByCategoryStartDate,//开始时间
         endDate: this.requestRankingListByCategoryEndDate,//结束时间
-        userMobile: this.userMobile
       };
       axios.post("api/moneyRecord/priceRankingListByCategory", params).then(
         (response) => {
@@ -131,7 +128,6 @@ export default {
       let params = {
         startDate: this.requestRankingListByCategoryStartDate,//开始时间
         endDate: this.requestRankingListByCategoryEndDate,//结束时间
-        userMobile: this.userMobile
       };
       axios.post("api/moneyRecord/inoutStatus", params).then(
         (response) => {
@@ -148,7 +144,6 @@ export default {
       let param = {
         startDate: this.requestRankingListByCategoryStartDate,//开始时间
         endDate: this.requestRankingListByCategoryEndDate,//结束时间
-        userMobile: this.userMobile,
         parentCategoryId: categoryId
       };
       this.$router.push({path: '/moneyRecordListByCategory', query: param});
@@ -156,10 +151,7 @@ export default {
 
     // 新增
     add() {
-      let param = {
-        userMobile: this.userMobile
-      };
-      this.$router.push({path: '/moneyRecordAdd', query: param});
+      this.$router.push({path: '/moneyRecordAdd', query: null});
     },
 
   },

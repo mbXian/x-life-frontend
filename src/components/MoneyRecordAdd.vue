@@ -94,7 +94,6 @@ export default {
   name: "MoneyRecordAdd",
   data() {
     return {
-      userMobile: null,
       changeTime: this.dateFormat(new Date()),
       price:0.00,
       remark: null,
@@ -133,7 +132,6 @@ export default {
 
     // 初始化数据
     initDate() {
-      this.userMobile = this.$route.query.userMobile;
 
       this.requestTagList();
       this.requestCategoryList();
@@ -142,10 +140,7 @@ export default {
 
     // 请求标签列表
     requestTagList() {
-      let params = {
-        userMobile: this.userMobile
-      }
-      axios.post("api/moneyTag/findUserTagList", params).then(
+      axios.post("api/moneyTag/findUserTagList", null).then(
         (response) => {
           this.tagList = response.data.data;
         },
@@ -225,7 +220,6 @@ export default {
           }
         }
         let params = {
-          userMobile: this.userMobile,
           price: this.price,
           changeTime: this.changeTime,
           categoryId: categoryIdLast,

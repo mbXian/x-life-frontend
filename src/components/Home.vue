@@ -86,11 +86,8 @@ export default {
 
     // 跳转到记账
     goToMoneyRecord() {
-      if (this.userMobile != null && this.userMobile != '') {
-        let param = {
-          userMobile: this.userMobile
-        };
-        this.$router.push({path:'/moneyRecord', query: param}); 
+      if (storage.get('userLoginVO')) {
+        this.$router.push({path:'/moneyRecord', query: null}); 
       } else {
         this.dialogLoginVisible = true;
       }
@@ -126,12 +123,6 @@ export default {
       );   
     },
 
-    // test() {
-    //   storage.set('user', { name:'Ben', mobile: '18824140606' });
-    //   console.log(JSON.stringify(storage.get('user')));
-    //   storage.remove('user')
-    //   console.log(JSON.stringify(storage.get('user')));
-    // }
   },
 };
 </script>

@@ -47,7 +47,6 @@ export default {
     return {
       // 消费list
       moneyRecordList: [],
-      userMobile: null,
     };
   },
 
@@ -63,7 +62,6 @@ export default {
 
     // 初始化数据
     initDate() {
-      this.userMobile = this.$route.query.userMobile;
       this.requestRankingListByCategory();
     },
 
@@ -72,7 +70,6 @@ export default {
       let params = {
         startDate: this.$route.query.startDate,//开始时间
         endDate: this.$route.query.endDate,//结束时间
-        userMobile: this.$route.query.userMobile,
         parentCategoryId: this.$route.query.parentCategoryId
       };
       axios.post("api/moneyRecord/listByParentCategoryId", params).then(
