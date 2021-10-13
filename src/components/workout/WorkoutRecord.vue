@@ -8,7 +8,8 @@
         <div>
           历史运动健身记录
         </div>
-        <div v-if="toNowStatisticsVO.startTrainTimeString && toNowStatisticsVO.endTrainTimeString">
+
+        <div v-if="toNowStatisticsVO.startTrainTimeString && toNowStatisticsVO.endTrainTimeString" class="moduleItemStype">
           <span>
             ⏰ 时间：
           </span>
@@ -22,7 +23,8 @@
             {{toNowStatisticsVO.endTrainTimeString}}
           </span>
         </div>
-        <div>
+
+        <div class="moduleItemStype">
           <span>
             ⏰ 总时长:
           </span>
@@ -33,8 +35,9 @@
             秒
           </span>
         </div>
+
         <div>
-          <div v-for="item in toNowStatisticsEachTypeVOList" :key="item.typeId">
+          <div v-for="item in toNowStatisticsEachTypeVOList" :key="item.typeId" class="moduleItemStype">
             <span>
               🏆 {{item.typeName}}:
             </span>
@@ -52,7 +55,8 @@
         <div>
           今日运动健身记录
         </div>
-        <div v-if="todayStatisticsVO.startTrainTimeString && todayStatisticsVO.endTrainTimeString">
+
+        <div v-if="todayStatisticsVO.startTrainTimeString && todayStatisticsVO.endTrainTimeString" class="moduleItemStype">
           <span>
             ⏰ 时间:
           </span>
@@ -66,7 +70,8 @@
             {{todayStatisticsVO.endTrainTimeString}}
           </span>
         </div>
-        <div>
+
+        <div class="moduleItemStype">
           <span>
             ⏰ 总时长:
           </span>
@@ -77,8 +82,9 @@
             秒
           </span>
         </div>
+
         <div>
-          <div v-for="item in todayStatisticsEachTypeVOList" :key="item.typeId">
+          <div v-for="item in todayStatisticsEachTypeVOList" :key="item.typeId" class="moduleItemStype">
             <span>
               🏆 {{item.typeName}}:
             </span>
@@ -206,6 +212,9 @@ export default {
   background: #dff4f7;
   border-radius: 4px;
   margin-top: 10px;
+}
+.moduleItemStype {
+  margin-top: 5px;
 }
 .valueStyle {
   color: skyblue;
