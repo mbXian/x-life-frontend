@@ -30,7 +30,7 @@
 
     <div style="text-align: center">
       <span>
-        <span style="color: gray">version: v1.3.0</span>
+        <span style="color: gray">version: v{{newVersion}}</span>
       </span>
     </div>
 
@@ -70,12 +70,14 @@ export default {
       userMobile: null,
       password: null,
       userLoginVO: {},
+      newVersion: '',
     };
   },
 
   created() {
     storage.set('client_id', 'ben_client');
     storage.set('client_secret', 'ben_secret');
+    this.requestNewVersion();
   },
 
   methods: {
@@ -130,6 +132,23 @@ export default {
           this.$message.error("登录请求失败！");
         }
       );   
+    },
+
+    // 查询最新版本号
+    requestNewVersion() {
+      axios.post("api/sysVersion/newVersion").then(
+        (response) => {
+          this.newVersion = response.data.data;
+          if (storage.get('version') == null || (storage.get('version') && storage.get('version') != this.newVersion)) {
+            storage.remove('version');
+            storage.remove('userLoginVO')
+          }
+          storage.set('version', this.newVersion);
+        },
+        (response) => {
+          this.$message.error("查询最新版本号请求失败！");
+        }
+      );        
     },
 
   },
