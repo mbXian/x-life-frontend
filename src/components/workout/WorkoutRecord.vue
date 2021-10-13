@@ -5,12 +5,12 @@
     <div>
       
       <div v-if="toNowStatisticsVO != null" class="moduleStype">
-        <div>
+        <div class="moduleTitleStyle">
           历史运动健身记录
         </div>
 
         <div v-if="toNowStatisticsVO.startTrainTimeString && toNowStatisticsVO.endTrainTimeString" class="moduleItemStype">
-          <span>
+          <span class="nameStyle">
             ⏰ 时间：
           </span>
           <span class="valueStyle">
@@ -25,7 +25,7 @@
         </div>
 
         <div class="moduleItemStype">
-          <span>
+          <span class="nameStyle">
             ⏰ 总时长:
           </span>
           <span class="valueStyle">
@@ -38,7 +38,7 @@
 
         <div>
           <div v-for="item in toNowStatisticsEachTypeVOList" :key="item.typeId" class="moduleItemStype">
-            <span>
+            <span class="nameStyle">
               🏆 {{item.typeName}}:
             </span>
             <span class="valueStyle">
@@ -52,12 +52,12 @@
       </div>    
 
       <div v-if="todayStatisticsVO != null" class="moduleStype">
-        <div>
+        <div class="moduleTitleStyle">
           今日运动健身记录
         </div>
 
         <div v-if="todayStatisticsVO.startTrainTimeString && todayStatisticsVO.endTrainTimeString" class="moduleItemStype">
-          <span>
+          <span class="nameStyle">
             ⏰ 时间:
           </span>
           <span class="valueStyle">
@@ -72,7 +72,7 @@
         </div>
 
         <div class="moduleItemStype">
-          <span>
+          <span class="nameStyle">
             ⏰ 总时长:
           </span>
           <span class="valueStyle">
@@ -85,7 +85,7 @@
 
         <div>
           <div v-for="item in todayStatisticsEachTypeVOList" :key="item.typeId" class="moduleItemStype">
-            <span>
+            <span class="nameStyle">
               🏆 {{item.typeName}}:
             </span>
             <span class="valueStyle">
@@ -217,8 +217,17 @@ export default {
   border-radius: 4px;
   margin-top: 10px;
 }
+.moduleTitleStyle {
+  color: orange;
+  font-weight: bold;
+  text-align: center;
+}
 .moduleItemStype {
   margin-top: 5px;
+}
+.nameStyle {
+  color: black;
+  font-weight: bold;
 }
 .valueStyle {
   color: skyblue;

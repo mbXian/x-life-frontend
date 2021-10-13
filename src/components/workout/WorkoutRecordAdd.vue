@@ -30,10 +30,10 @@
 
       <div class="contentItemStype">
         <div v-for="recordDetail in workoutRecordDetailList" :key="recordDetail.id" class="recordDetailStype">
-          <span>
-           {{recordDetail.name}}:
+          <span class="nameStyle">
+           🏆 {{recordDetail.name}}:
           </span>
-          <span>
+          <span class="valueStyle">
            {{recordDetail.count}}
           </span>
           <span>
@@ -234,5 +234,13 @@ export default {
   border-radius: 4px;
   margin-top: 5px;
   height: 28px;
+}
+.nameStyle {
+  color: black;
+  font-weight: bold;
+}
+.valueStyle {
+  color: skyblue;
+  font-weight: bold;
 }
 </style>
