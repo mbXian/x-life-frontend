@@ -201,6 +201,10 @@ export default {
       );        
     },
 
+    // 跳转到新增页面
+    add() {
+      this.$router.push({path:'/WorkoutRecordAdd', query: null});
+    }
   },
 };
 </script>
