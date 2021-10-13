@@ -36,6 +36,15 @@
           </span>
         </div>
 
+        <div class="moduleItemStype">
+          <span class="nameStyle">
+            🏋🏻 次数:
+          </span>
+          <span class="valueStyle">
+            {{toNowStatisticsVO.count}}
+          </span>
+        </div>     
+
         <div>
           <div v-for="item in toNowStatisticsEachTypeVOList" :key="item.typeId" class="moduleItemStype">
             <span class="nameStyle">
@@ -82,6 +91,15 @@
             秒
           </span>
         </div>
+
+        <div class="moduleItemStype">
+          <span class="nameStyle">
+            🏋🏻 次数:
+          </span>
+          <span class="valueStyle">
+            {{todayStatisticsVO.count}}
+          </span>
+        </div>        
 
         <div>
           <div v-for="item in todayStatisticsEachTypeVOList" :key="item.typeId" class="moduleItemStype">
