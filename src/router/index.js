@@ -5,6 +5,7 @@ import KongmoonWeather from '@/components/KongmoonWeather'
 import MoneyRecord from '@/components/MoneyRecord'
 import MoneyRecordListByCategory from '@/components/MoneyRecordListByCategory'
 import MoneyRecordAdd from '@/components/MoneyRecordAdd'
+import WorkoutRecord from '@/components/workout/WorkoutRecord'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/moneyRecordAdd',
       name: 'MoneyRecordAdd',
       component: MoneyRecordAdd
+    },
+    {
+      path: '/WorkoutRecord',
+      name: 'WorkoutRecord',
+      component: WorkoutRecord
     },
   ]
 })

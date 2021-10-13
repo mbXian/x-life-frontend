@@ -9,9 +9,9 @@
     <div class="contentItemStype">
       <el-button type="primary" @click="goToMoneyRecord">记账工具</el-button>
     </div>
-    <!-- <div class="contentItemStype">
-      <el-button type="primary" @click="test">test</el-button>
-    </div> -->
+    <div class="contentItemStype">
+      <el-button type="primary" @click="goToWorkout">运动健身</el-button>
+    </div>
 
     <!-- 线 -->
     <div class="dashedStype"></div>    
@@ -30,7 +30,7 @@
 
     <div style="text-align: center">
       <span>
-        <span style="color: gray">version: v1.2.7</span>
+        <span style="color: gray">version: v1.3.0</span>
       </span>
     </div>
 
@@ -92,6 +92,15 @@ export default {
         this.dialogLoginVisible = true;
       }
     },
+
+    // 跳转到运动健身
+    goToWorkout() {
+      if (storage.get('userLoginVO')) {
+        this.$router.push({path:'/WorkoutRecord', query: null});
+      } else {
+        this.dialogLoginVisible = true;
+      }
+    },    
 
     // 登录
     onLogin() {

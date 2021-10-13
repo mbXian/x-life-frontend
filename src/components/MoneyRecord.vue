@@ -66,7 +66,7 @@ export default {
     return {
       // 每个一级分类的总消费排行榜
       priceRankingList: [],
-      // 排行版的日期范围
+      // 排行榜的日期范围
       requestRankingListByCategoryStartDate: '',
       requestRankingListByCategoryEndDate: '',
       // 收入、支出总额
