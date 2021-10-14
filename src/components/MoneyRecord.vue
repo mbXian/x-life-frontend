@@ -29,7 +29,7 @@
           </el-date-picker>
         </div>  
         <div class="contentItemStype">
-          <el-button type="primary" @click="requestRankingListByCategory">消费榜查询</el-button>
+          <el-button type="primary" @click="onSearch">查询</el-button>
           <el-button type="success" @click="add">记一笔</el-button>
         </div>
         <div class="contentItemStype">
@@ -103,6 +103,12 @@ export default {
         this.requestRankingListByCategoryEndDate = y + "-" + m + "-" + d;
       }
 
+      this.requestRankingListByCategory();
+      this.inoutStatus();
+    },
+
+    // 点击查询
+    onSearch() {
       this.requestRankingListByCategory();
       this.inoutStatus();
     },
