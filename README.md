@@ -1,4 +1,4 @@
-# x-frontend
+# x-life-frontend
 
 > A Vue.js project
 
