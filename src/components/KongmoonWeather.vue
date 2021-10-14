@@ -388,24 +388,7 @@
           fit="fill"
         ></el-image>
       </div>
-
-      <!-- <div style="text-align: center">
-        <span>
-          <span style="color: darkturquoise">技术支持：@兵</span>
-          <el-image
-            class="valueIconStype"
-            style="border-radius: 50%"
-            src="https://gitee.com/pic-project/pic-it-work-001/raw/master/photoshop/portrait.png"
-            fit="fill"
-          ></el-image>
-        </span>
-      </div>
-
-      <div style="text-align: center">
-        <span>
-          <span style="color: gray">version: v-1.1</span>
-        </span>
-      </div> -->
+      
     </div>
   </div>
 </template>

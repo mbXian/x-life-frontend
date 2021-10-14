@@ -13,6 +13,9 @@
             </el-table-column>
 
             <el-table-column prop="price" label="消费金额" align="right">
+              <template slot-scope="scope">
+                <span class="tablePriceStyle">{{ scope.row.price }}</span>
+              </template>              
             </el-table-column>
 
             <el-table-column prop="channelName" label="支付渠道" align="center">
@@ -120,5 +123,9 @@ export default {
   border-radius: 2px;
   margin-bottom: 1px;
   text-align: center;
+}
+.tablePriceStyle {
+  color: skyblue;
+  font-weight: bold;
 }
 </style>
